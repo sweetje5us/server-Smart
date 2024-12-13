@@ -1,103 +1,160 @@
-
-const { createProxyMiddleware } = require('http-proxy-middleware')
-var express = require('express');
+const { createProxyMiddleware } = require('http-proxy-middleware');
+const express = require('express');
 const axios = require('axios');
-var bodyParser = require('body-parser');
-var jsonParser = bodyParser.json();
-var fs = require('fs');
-var cors = require('cors')
-const hostname ='192.168.0.19';
+const bodyParser = require('body-parser');
+const fs = require('fs');
+const cors = require('cors');
 const http = require('http');
-var port ='8080';
-var app = express()
+const WebSocket = require('ws');
+const hostname = '192.168.0.19';
+const port = '8080';
+const app = express();
+const path = require('path');
 
-var corsOptions = {
+// Объявляем переменную для хранения текста
+let documentText = '';
+
+// Определяем путь к документу
+const filePath = path.join(__dirname, 'cookie.txt');
+
+// Читаем текст из файла
+fs.readFile(filePath, 'utf8', (err, data) => {
+  if (err) {
+      console.error('Ошибка при чтении файла:', err);
+      return;
+  }
+
+  // Сохраняем текст в переменную
+  documentText = data;
+
+  // Выводим текст в консоль
+  console.log('Текст из документа:', documentText);
+});
+
+const corsOptions = {
   origin: '*',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
+};
 
-
-app.use(cors());
-app.use(function(req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  next();
-});
+app.use(cors(corsOptions));
+app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
-app.get('/api/tasks', function (req, res) {
-  var content = fs.readFileSync('tasks.json', 'utf8');
-  var users = JSON.parse(content);
-  res.send(users);
+
+// Создаем WebSocket сервер
+const wss = new WebSocket.Server({ noServer: true });
+
+// Обработка подключения WebSocket
+wss.on('connection', (ws) => {
+  console.log('Client connected');
+
+  // Обработка сообщений от клиента
+  ws.on('message', async (message) => {
+    const data = JSON.parse(message);
+    const { device_id, action_type, value } = data;
+
+    // Отправка запроса к API Яндекса
+    try {
+      const response = await axios.post(`https://iot.quasar.yandex.ru/m/user/devices/${device_id}/actions`, {
+        actions: [{
+          type: action_type,
+          state: {
+            instance: 'on', // Установите значение состояния
+            value: value
+          }
+        }]
+      }, {
+        headers: {
+          'Accept': '*/*',
+          'Accept-Language': 'ru,en;q=0.9,la;q=0.8',
+          'Content-Type': 'application/json',
+          'x-csrf-token': 'c9a0b7620b6c7a9a8403c08be4ca47afcd33abb1:1734098245',
+          // Добавьте другие заголовки, если это необходимо
+          'Cookie': documentText, // Замените на ваши куки
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 YaBrowser/24.10.0.0 Safari/537.36',
+        }
+      });
+
+      console.log(`Response status: ${response.status}`);
+      console.log('Response data:', response.data);
+      await fetchDataFromAPI(); 
+      // Отправляем ответ клиенту
+      ws.send(JSON.stringify({ status: 'success', data: response.data }));
+    } catch (error) {
+      console.error('Error sending data to Yandex API:', error);
+      ws.send(JSON.stringify({ status: 'error', message: 'Failed to send action' }));
+    }
+  });
+
+  // Обработка отключения клиента
+  ws.on('close', () => {
+    console.log('Client disconnected');
+  });
 });
-app.get('/api/tasks/:id', function (req, res) {
-  var id = req.params.id; // получаем id
-  var content = fs.readFileSync('tasks.json', 'utf8');
-  var users = JSON.parse(content);
-  var user = null;
-  // находим в массиве пользователя по id
-  for (var i = 0; i < users.length; i++) {
-      if (users[i].id == id) {
-          user = users[i];
-          break;
+
+// Функция для получения данных из API
+const fetchDataFromAPI = async () => {
+  try {
+    const response = await axios.get('https://iot.quasar.yandex.ru/m/v3/user/devices', {
+      headers: {
+        'Accept': '*/*',
+        'Accept-Language': 'ru,en;q=0.9,la;q=0.8',
+        'Connection': 'keep-alive',
+        'Cookie': documentText, // Замените на ваши куки
+        'Origin': 'https://yandex.ru',
+        'Referer': 'https://yandex.ru/',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 YaBrowser/24.10.0.0 Safari/537.36',
+      },
+    });
+    console.log(`Response status: ${response.status}`);
+    console.log('Response data:', response.data);
+    // Отправляем данные всем подключенным клиентам
+    wss.clients.forEach((client) => {
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(JSON.stringify(response.data));
       }
+    });
+  } catch (error) {
+    console.error('Error fetching data from API:', error);
   }
-  // отправляем пользователя
-  if (user) {
-      res.send(user);
-  } else {
-      res.status(404).send();
-  }
-});
+};
+
+// Запускаем периодический запрос каждые 30 секунд
+setInterval(fetchDataFromAPI, 30000);
+
+// Обработка запросов на /api/orders
 app.post('/api/orders', async (req, res) => {
   // Заголовки запроса
   const myHeaders = {
-      "accept": "application/json",
-      "accept-language": "ru,en;q=0.9,la;q=0.8",
-      "content-type": "application/json",
-      "cookie": "__Secure-ab-group=25; __Secure-ext_xcid=caba05e591e3d5ffadc2829bcb0817a5; ob_theme=SYSTEM; __Secure-ETC=788db9f23fce93652855fdbbaec927f9; is_cookies_accepted=1; ADDRESSBOOKBAR_WEB_CLARIFICATION=1733408058; __Secure-user-id=43257616; abt_data=7.0-gXzzuyQwO1I_qYdEkaFgj-cDPaWkeDg7GZMQNFoGUzwvJnj81wr9SMPpV64Z3NmlVh9dyRe1hfQryvZwrsczvt2kiuAu1yxrlmHFRrGwMqjUzivN8V6PmRgOLs6u1-E_4jMRX9W_gXmLKeggwumlVTKzR1G1-7x__sCf2OduIQmyqWCpX9sEYmBJJZF-bfqx3uLpFNveY38dB8GP545oezVmLes1yloyCPoOU6lhBE0EVrevvgR4bz8uvNDSrTg-I3Qz6jPgsFzrjuDjWBxuBU0FfPxs7rQCP8VxcrmzeQoCz3EVRqlHt2W7glmVtRrV-Fdc97xG0FPKb3No5c6n_84D19t6cWOuaOONe42SqRH3iNgdk; TS013595b9=0187c00a181b9d062ce73fb2d452f70bb69e2a25d8d5ee3ee2ea15daef9e39dba6d1560342218a461fe84e717687403bb33a981384; TS015d2969=0187c00a181b9d062ce73fb2d452f70bb69e2a25d8d5ee3ee2ea15daef9e39dba6d1560342218a461fe84e717687403bb33a981384; xcid=916408f921c95167b5375d10424c14f3; __Secure-access-token=6.43257616.H8pJNJyVT565s79Qo_yrxg.25.ATWTrj86909XzGv6zpUEYdW5evl-VMfxURYe1pI4bFJnOWvrCqAaqbzVxE7XVenuze3_phBGYplyLei8YuIbzyo.20200203113401.20241205140717.d6NCDthJDoFtg__WClVbBF3ZHNIRBJb35JV4X51THMo.1f228bb023558fbd; __Secure-refresh-token=6.43257616.H8pJNJyVT565s79Qo_yrxg.25.ATWTrj86909XzGv6zpUEYdW5evl-VMfxURYe1pI4bFJnOWvrCqAaqbzVxE7XVenuze3_phBGYplyLei8YuIbzyo.20200203113401.20241205140717.juX_aTTR110ZI4DtG79ri2M8pGqkz1u_jncTYcYTa1c.193c853a8c1c91f07; rfuid=NjkyNDcyNDUyLDEyNC4wNDM0NzUyNzUxNjA3NCwxMDI4MjM3MjIzLC0xLC05ODc0NjQ3MjQsVzNzaWJtRnRaU0k2SWxCRVJpQldhV1YzWlhJaUxDSmtaWE5qY21sd2RHbHZiaUk2SWxCdmNuUmhZbXhsSUVSdlkzVnRaVzUwSUVadmNtMWhkQ0lzSW0xcGJXVlVlWEJsY3lJNlczc2lkSGx3WlNJNkltRndjR3hwWTJGMGFXOXVMM0JrWmlJc0luTjFabVpwZUdWeklqb2ljR1JtSW4wc2V5SjBlWEJsSWpvaWRHVjRkQzl3WkdZaUxDSnpkV1ptYVhobGN5STZJbkJrWmlKOVhYMHNleUp1WVcxbElqb2lRMmh5YjIxbElGQkVSaUJXYVdWM1pYSWlMQ0prWlhOamNtbHdkR2x2YmlJNklsQnZjblJoWW14bElFUnZZM1Z0Wlc1MElFWnZjbTFoZENJc0ltMXBiV1ZVZVhCbGN5STZXM3NpZEhsd1pTSTZJbUZ3Y0d4cFkyRjBhVzl1TDNCa1ppSXNJbk4xWm1acGVHVnpJam9pY0dSbUluMHNleUowZVhCbElqb2lkR1Y0ZEM5d1pHWWlMQ0p6ZFdabWFYaGxjeUk2SW5Ca1ppSjlYWDBzZXlKdVlXMWxJam9pUTJoeWIyMXBkVzBnVUVSR0lGWnBaWGRsY2lJc0ltUmxjMk55YVhCMGFXOXVJam9pVUc5eWRHRmliR1VnUkc5amRXMWxiblFnUm05eWJXRjBJaXdpYldsdFpWUjVjR1Z6SWpwYmV5SjBlWEJsSWpvaVlYQndiR2xqWVhScGIyNHZjR1JtSWl3aWMzVm1abWw0WlhNaU9pSndaR1lpZlN4N0luUjVjR1VpT2lKMFpYaDBMM0JrWmlJc0luTjFabVpwZUdWeklqb2ljR1JtSW4xZGZTeDdJbTVoYldVaU9pSk5hV055YjNOdlpuUWdSV1JuWlNCUVJFWWdWbWxsZDJWeUlpd2laR1Z6WTNKcGNIUnBiMjRpT2lKUWIzSjBZV0pzWlNCRWIyTjFiV1Z1ZENCR2IzSnRZWFFpTENKdGFXMWxWSGx3WlhNaU9sdDdJblI1Y0dVaU9pSmhjSEJzYVdOaGRHbHZiaTl3WkdZaUxDSnpkV1ptYVhobGN5STZJbkJrWmlKOUxIc2lkSGx3WlNJNkluUmxlSFF2Y0dSbUlpd2ljM1ZtWm1sNFpYTWlPaUp3WkdZaWZWMTlMSHNpYm1GdFpTSTZJbGRsWWt0cGRDQmlkV2xzZEMxcGJpQlFSRVlpTENKa1pYTmpjbWx3ZEdsdmJpSTZJbEJ2Y25SaFlteGxJRVJ2WTNWdFpXNTBJRVp2Y20xaGRDSXNJbTFwYldWVWVYQmxjeUk2VzNzaWRIbHdaU0k2SW1Gd2NHeHBZMkYwYVc5dUwzQmtaaUlzSW5OMVptWnBlR1Z6SWpvaWNHUm1JbjBzZXlKMGVYQmxJam9pZEdWNGRDOXdaR1lpTENKemRXWm1hWGhsY3lJNkluQmtaaUo5WFgxZCxXeUp5ZFNKZCwwLDEsMCwyNCwyMzc0MTU5MzAsOCwyMjcxMjY1MjAsMCwxLDAsLTQ5MTI3NTUyMyxSMjl2WjJ4bElFbHVZeTRnVG1WMGMyTmhjR1VnUjJWamEyOGdWMmx1TXpJZ05TNHdJQ2hYYVc1a2IzZHpJRTVVSURFd0xqQTdJRmRwYmpZME95QjROalFwSUVGd2NHeGxWMlZpUzJsMEx6VXpOeTR6TmlBb1MwaFVUVXdzSUd4cGEyVWdSMlZqYTI4cElFTm9jbTl0WlM4eE1qZ3VNQzR3TGpBZ1dXRkNjbTkzYzJWeUx6STBMakV3TGpBdU1DQlRZV1poY21rdk5UTTNMak0ySURJd01ETXdNVEEzSUUxdmVtbHNiR0U9LGV5SmphSEp2YldVaU9uc2lZWEJ3SWpwN0ltbHpTVzV6ZEdGc2JHVmtJanBtWVd4elpTd2lTVzV6ZEdGc2JGTjBZWFJsSWpwN0lrUkpVMEZDVEVWRUlqb2laR2x6WVdKc1pXUWlMQ0pKVGxOVVFVeE1SVVFpT2lKcGJuTjBZV3hzWldRaUxDSk9UMVJmU1U1VFZFRk1URVZFSWpvaWJtOTBYMmx1YzNSaGJHeGxaQ0o5TENKU2RXNXVhVzVuVTNSaGRHVWlPbnNpUTBGT1RrOVVYMUpWVGlJNkltTmhibTV2ZEY5eWRXNGlMQ0pTUlVGRVdWOVVUMTlTVlU0aU9pSnlaV0ZrZVY5MGIxOXlkVzRpTENKU1ZVNU9TVTVISWpvaWNuVnVibWx1WnlKOWZTd2lhVEU0YmlJNmUzMTlMQ0o1WVc1a1pYZ2lPbnNpYldWa2FXRWlPbnQ5TENKeVpXRmtZV0pwYkdsMGVTSTZlMzBzSW01bGRYSnZRWE56YVhOMFlXNTBJanA3SW05dVVHRm5aVU5vWVc1blpXUWlPbnQ5TENKdmJrNWxkWEp2UVhOemFYTjBZVzUwVDNCbGJtVmtTVzVUY0d4cGRGWnBaWGROWVhsaVpVTm9ZVzVuWldRaU9udDlmU3dpY0hWaWJHbGpSbVZoZEhWeVpTSTZleUpVZFhKaWIwRndjRk4wWVhSbElqcDdJa2hCVTE5Q1JWUlVSVkpmVmtWU1UwbFBUaUk2SW1oaGMwSmxkSFJsY2xabGNuTnBiMjRpTENKSlRsOVFVazlIVWtWVFV5STZJbWx1VUhKdlozSmxjM01pTENKSlRsTlVRVXhNUVZSSlQwNWZSVkpTVDFJaU9pSnBibk4wWVd4c1lYUnBiMjVGY25KdmNpSXNJazVCVmtsSFFWUkpUMDVmVkU5ZlZVNUxUazlYVGw5QlVGQk1TVU5CVkVsUFRpSTZJbTVoZG1sbllYUnBiMjVVYjFWdWEyNXZkMjVCY0hCc2FXTmhkR2x2YmlJc0lrNVBWRjlKVGxOVVFVeE1SVVFpT2lKdWIzUkpibk4wWVd4c1pXUWlMQ0pTUlVGRVdWOUdUMUpmVlZORklqb2ljbVZoWkhsR2IzSlZjMlVpZlgxOWZRPT0sNjUsNTIxMDUxOTExLDEsMSwtMSwxNjk5OTU0ODg3LDE2OTk5NTQ4ODcsLTUwNTg5MjYxMSwyNA==",
-      "origin": "https://www.ozon.ru",
-      "priority": "u=1, i",
-      "referer": "https://www.ozon.ru/my/order-done?orderNumber=43257616-0462&showTabBar=false&number=43257616-0462",
-      "sec-ch-ua": "\"Chromium\";v=\"128\", \"Not;A=Brand\";v=\"24\", \"YaBrowser\";v=\"24.10\", \"Yowser\";v=\"2.5\"",
-      "sec-ch-ua-mobile": "?0",
-      "sec-ch-ua-platform": "\"Windows\"",
-      "sec-fetch-dest": "empty",
-      "sec-fetch-mode": "cors",
-      "sec-fetch-site": "same-origin",
-      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 YaBrowser/24.10.0.0 Safari/537.36",
-      "x-o3-app-name": "dweb_client",
-      "x-o3-app-version": "release_4-11-2024_1bfb0a1c",
-      "x-o3-manifest-version": "1bfb0a1cfc6b65f7f73ca2d86695dec6e6e31d20",
-      "x-o3-parent-requestid": "f90deb6a1f26bf1cf9bbfb81ae46cdec"
+    "accept": "application/json",
+    "accept-language": "ru,en;q=0.9,la;q=0.8",
+    "content-type": "application/json",
+    // ... другие заголовки
   };
 
   // Тело запроса
   const raw = JSON.stringify({
-      "asyncData": "eyJ1cmwiOiIvIiwiY2kiOnsidmVydGljYWwiOiJjc21hIiwibmFtZSI6Im9yZGVyVHJhY2tpbmciLCJwYXJhbXMiOlt7Im5hbWUiOiJQcmVzZXQiLCJ0ZXh0IjoiMSJ9XSwidmVyc2lvbiI6NCwibGF5b3V0SUQiOjYxOTMsImlkIjozMjU3ODIxfX0="
-});
+    "asyncData": "eyJ1cmwiOiIvIiwiY2kiOnsidmVydGljYWwiOiJjc21hIiwibmFtZSI6Im9yZGVyVHJhY2tpbmciLCJwYXJhbXMiOlt7Im5hbWUiOiJQcmVzZXQiLCJ0ZXh0IjoiMSJ9XSwidmVyc2lvbiI6NCwibGF5b3V0SUQiOjYxOTMsImlkIjozMjU3ODIxfX0="
+  });
 
   try {
-      // Выполнение запроса к API Ozon
-      const response = await axios.post(
-          "https://www.ozon.ru/api/composer-api.bx/widget/json/v2?widgetStateId=orderTracking-3257821-default-1",
-          raw,
-          { headers: myHeaders }
-      );
-      // Отправка ответа клиенту
-      res.json(response.data);
+    // Выполнение запроса к API Ozon
+    const response = await axios.post(
+      "https://www.ozon.ru/api/composer-api.bx/widget/json/v2?widgetStateId=orderTracking-3257821-default-1",
+      raw,
+      { headers: myHeaders }
+    );
+    // Отправка ответа клиенту
+    res.json(response.data);
   } catch (error) {
-      console.error('Error fetching data from Ozon API:', error);
-      // Обработка ошибок
-      if (error.response) {
-          res.status(error.response.status).json(error.response.data);
-      } else {
-          res.status(500).send('Internal Server Error');
-      }
+    console.error('Error fetching data from Ozon API:', error);
+    // Обработка ошибок
+    if (error.response) {
+      res.status(error.response.status).json(error.response.data);
+    } else {
+      res.status(500).send('Internal Server Error');
+    }
   }
 });
-
 app.get('/api/orders/tracking', async (req, res) => {
   try {
     const response = await fetch('https://market-delivery.yandex.ru/api/v2/orders/tracking', {
@@ -105,7 +162,7 @@ app.get('/api/orders/tracking', async (req, res) => {
       headers: {
         "accept": "application/json, text/plain, */*",
         "accept-language": "ru",
-        "cookie": "Eats-Session=0a8335cc08924a569c0843ae519b6d3d; receive-cookie-deprecation=1; yashr=4334156201733337411; gdpr=0; _ym_uid=1728547301408543163; _ym_d=1733338918; yandexuid=7484612501724495527; yuidss=7484612501724495527; ymex=2048699028.yrts.1733339028; yabs-vdrf=A0; font_loaded=YSv1; amcuid=5391140211733341985; cycada=iR/llcN+LYuOti2yuGAD3F7VGH8lkbjsFXDerOEDp+o=; Session_id=3:1733344163.5.0.1733344163343:bq6mBQ:63d5.1.2:1|727659051.0.2.3:1733344163|3:10299195.796308.IjopPdnNWGI5fRq00sHgwG0mNZA; sessar=1.1196.CiDoQj3sO9yCMW6pGxc2bS1K7G_f0WGdHS_OBYd2B9t54w.nhD1vvqNO5qsutwuRfCCjukon0evqIFL0gIsC7Aav6s; sessionid2=3:1733344163.5.0.1733344163343:bq6mBQ:63d5.1.2:1|727659051.0.2.3:1733344163|3:10299195.796308.fakesign0000000000000000000; L=WgpqeV9nUG9jCltSAQh7Wmd5UwBKVnADBTYAFVUCHjA=.1733344163.15971.349571.b8947f41e5ee64a10f963e305e5ae055; yandex_login=bryleffe; device_id=a51d4088812f60b7de7fe27f91cfad2dff9e184cf; yclid_src=yandex.cloud/ru/services/api-gateway/:10550032363586060287:7484612501724495527; maps_session_id=1733397957423371-10017738503153855425-balancer-l7leveler-kubr-yp-sas-38-BAL; yandex_expboxes=1163120%2C0%2C57%3B1164006%2C0%2C68%3B1161883%2C0%2C80%3B1068828%2C0%2C29%3B1131449%2C0%2C72%3B998603%2C0%2C61%3B663872%2C0%2C38%3B1160110%2C0%2C29%3B1163140%2C0%2C0; is_gdpr=0; is_gdpr_b=CNa0CBCxogIoAg==; gpb=gpauto.57_999092%3A56_271350%3A140%3A1%3A1733409758; _ym_isad=1; active-browser-timestamp=1733415267692; isa=k+HwF2x0hw01rlsR4DbuEc3EbSga3SEDtYkf+HIZHzkECmeQXB+SGTIKUq464rnHfkkLX/ejMdVrmtPonQxv91cCpOM=; i=AZBVR+zp5VZ6SgZU6/592igQXL5vzycH+L8/kSS10F2WD38VTjtt3XN0afY3YtZ1ldKxpcMw/XYKKGSzfpx3VY+tseI=; ys=def_bro.1#udn.cDpicnlsZWZmZQ%3D%3D#wprid.1733417484064423-1912353672227261709-balancer-l7leveler-kubr-yp-vla-16-BAL#c_chck.778471452; _yasc=nqZnESC0jI93lnE776B1VAfkcKsS/c76OCdzpqrRBBUBJ8VcAy5j3uljLnxXHdFKi/xWn+u3tTu4L8smC4f2n/4kErlX; yp=1764875028.brd.0702004923#1764875028.cld.2270452#1733590573.dlp.3#1733499908.duc.ru#1733424909.gpauto.57_999092:56_271351:140:1:1733417709#1734537877.hdrc.1#2016803947.multib.1#2048777484.pcs.1#1742547735.stltp.serp_bk-map_1_1711011735#1764953484.swntab.0#1743461844.szm.1_100000023841858:3440x1440:1502x1162#1733499908.uc.ru#2048704163.udn.cDpicnlsZWZmZQ%3D%3D#1734447546.vhstfltr_onb.3:1726671545629; bh=ElEiQ2hyb21pdW0iO3Y9IjEyOCIsICJOb3Q7QT1CcmFuZCI7dj0iMjQiLCAiWWFCcm93c2VyIjt2PSIyNC4xMCIsICJZb3dzZXIiO3Y9IjIuNSIaBSJ4ODYiIg0iMjQuMTAuNC43NTYiKgI/MDICIiI6CSJXaW5kb3dzIkIIIjE1LjAuMCJKBCI2NCJSaCJDaHJvbWl1bSI7dj0iMTI4LjAuNjYxMy4xODYiLCAiTm90O0E9QnJhbmQiO3Y9IjI0LjAuMC4wIiwgIllhQnJvd3NlciI7dj0iMjQuMTAuNC43NTYiLCAiWW93c2VyIjt2PSIyLjUiWgI/MGDvtce6Bmoh3Mrh/wiS2KGxA5/P4eoD+/rw5w3r//32D7bGhJ8B84EC; eda_web={%22app%22:{%22analyticsSession%22:{%22id%22:%22m4bk524o-espxy804v5-2zn8phik1h6-24sec1jgbap%22%2C%22start%22:1733417696%2C%22update%22:1733417788}%2C%22deliveryTime%22:null%2C%22themeVariantKey%22:%22light%22%2C%22xDeviceId%22:%22m1brd8jc-8kbz7y5hfcs-e6nu36gyy8-1piedm6tjhsh%22%2C%22lastObtainedGps%22:{%22lat%22:57.99909210205078%2C%22lon%22:56.2713508605957%2C%22timestamp%22:1733417791040}%2C%22lat%22:57.99887%2C%22lon%22:56.27047}}",
+        "cookie": cookie,
         "priority": "u=1, i",
         "referer": "https://market-delivery.yandex.ru/orders",
         "sec-ch-ua": "\"Chromium\";v=\"128\", \"Not;A=Brand\";v=\"24\", \"YaBrowser\";v=\"24.10\", \"Yowser\";v=\"2.5\"",
@@ -141,76 +198,120 @@ app.get('/api/orders/tracking', async (req, res) => {
   }
 });
 
-app.post('/api/tasks', jsonParser, function (req, res) {
+// Получение данных о задачах
+app.get('/api/tasks', (req, res) => {
+  try {
+    const content = fs.readFileSync('tasks.json', 'utf8');
+    const tasks = JSON.parse(content);
+    res.send(tasks);
+  } catch (error) {
+    console.error('Ошибка при чтении задач:', error);
+    res.status(500).send('Ошибка сервера');
+  }
+});
+
+// Создание новой задачи
+app.post('/api/tasks', (req, res) => {
   if (!req.body) return res.sendStatus(400);
 
-  var userName = req.body.name;
-  var userAge = req.body.age;
-  var user = { name: userName, age: userAge };
+  const newTask = {
+    task_id: req.body.task_id,
+    kanban_id: req.body.kanban_id,
+    name: req.body.name,
+    assignee: req.body.assignee,
+    description: req.body.description,
+    status: req.body.status,
+    backgroundColor: req.body.backgroundColor || '#FFFFFF'
+  };
 
-  var data = fs.readFileSync('tasks.json', 'utf8');
-  var users = JSON.parse(data);
-
-  // находим максимальный id
-  var id = Math.max.apply(
-      Math,
-      users.map(function (o) {
-          return o.id;
-      })
-  );
-// увеличиваем его на единицу
-user.id = id + 1;
-// добавляем пользователя в массив
-users.push(user);
-var data = JSON.stringify(users);
-// перезаписываем файл с новыми данными
-fs.writeFileSync('tasks.json', data);
-res.send(user);
-});
-app.delete('/api/tasks/:id', function (req, res) {
-  var id = req.params.id;
-  var data = fs.readFileSync('tasks.json', 'utf8');
-  var users = JSON.parse(data);
-  var index = -1;
-  // находим индекс пользователя в массиве
-  for (var i = 0; i < users.length; i++) {
-      if (users[i].id == id) {
-          index = i;
-          break;
-      }
-  }
-  if (index > -1) {
-      // удаляем пользователя из массива по индексу
-      var user = users.splice(index, 1)[0];
-      var data = JSON.stringify(users);
-      fs.writeFileSync('tasks.json', data);
-      // отправляем удаленного пользователя
-      res.send(user);
-  } else {
-      res.status(404).send();
+  try {
+    const data = fs.readFileSync('tasks.json', 'utf8');
+    const tasks = JSON.parse(data);
+    tasks.push(newTask);
+    fs.writeFileSync('tasks.json', JSON.stringify(tasks));
+    res.status(201).send(newTask);
+  } catch (error) {
+    console.error('Ошибка при создании задачи:', error);
+    res.status(500).send('Ошибка сервера');
   }
 });
 
+// Обновление задачи
+app.put('/api/tasks', (req, res) => {
+  console.log('Received request body:', req.body);
+  if (!req.body.task_id) {
+    return res.status(400).json({ error: 'task_id is missing' });
+  }
 
+  try {
+    const data = fs.readFileSync('tasks.json', 'utf8');
+    const tasks = JSON.parse(data);
+    const taskIndex = tasks.findIndex(task => task.task_id === req.body.task_id);
 
+    if (taskIndex === -1) {
+      return res.status(404).json({ error: 'Task not found' });
+    }
 
+    // Обновление задачи
+    tasks[taskIndex] = { ...tasks[taskIndex], ...req.body };
+    fs.writeFileSync('tasks.json', JSON.stringify(tasks));
+    res.status(200).json({ message: 'Task updated successfully' });
+  } catch (error) {
+    console.error('Error updating task:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
 
+// Удаление задачи
+app.delete('/api/tasks/:id', (req, res) => {
+  const id = req.params.id;
+  console.log('Received request body:', req.body);
+  try {
+    const data = fs.readFileSync('tasks.json', 'utf8');
+    const tasks = JSON.parse(data);
+    const index = tasks.findIndex(task => task.task_id == id);
 
+    if (index > -1) {
+      const deletedTask = tasks.splice(index, 1)[0];
+      fs.writeFileSync('tasks.json', JSON.stringify(tasks));
+      res.send(deletedTask);
+    } else {
+      res.status(404).send('Task not found');
+    }
+  } catch (error) {
+    console.error('Ошибка при удалении задачи:', error);
+    res.status(500).send('Ошибка сервера');
+  }
+});
 
-app.use(cors(corsOptions), createProxyMiddleware({
-  
-  router: (req) => new URL(req.path.substring(1)),
-  pathRewrite: (path, req) => (new URL(req.path.substring(1))).pathname,
+// Проксирование запросов к Yandex API
+app.use('/yandex/api', createProxyMiddleware({
+  target: 'https://api.iot.yandex.net', // Укажите целевой сервер
   changeOrigin: true,
-  logger: console
-}))
+  pathRewrite: {
+    '^/yandex/api': '/v1.0/devices/actions', // Удаляем /api из пути перед отправкой на целевой сервер
+  },
+  onProxyReq: (proxyReq, req, res) => {
+    // Добавление заголовка авторизации
+    proxyReq.setHeader('Authorization', `Bearer YOUR_ACCESS_TOKEN`); // Замените YOUR_ACCESS_TOKEN на ваш токен
+  },
+  onError: (err, req, res) => {
+    console.error('Proxy error:', err);
+    res.status(500).send('Proxy error');
+  },
+}));
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200
-  res.setHeader('Content-Type', 'text/plain')
-  res.end('Hello world')
+// Создание HTTP сервера
+const server = http.createServer(app);
+
+// Обработка WebSocket соединений
+server.on('upgrade', (request, socket, head) => {
+  wss.handleUpgrade(request, socket, head, (ws) => {
+    wss.emit('connection', ws, request);
+  });
 });
 
-app.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}`)
-})
+// Запуск сервера
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}`);
+});
