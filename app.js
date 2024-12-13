@@ -20,8 +20,8 @@ const filePath = path.join(__dirname, 'cookie.txt');
 // Читаем текст из файла
 fs.readFile(filePath, 'utf8', (err, data) => {
   if (err) {
-      console.error('Ошибка при чтении файла:', err);
-      return;
+    console.error('Ошибка при чтении файла:', err);
+    return;
   }
 
   // Сохраняем текст в переменную
@@ -46,6 +46,14 @@ const wss = new WebSocket.Server({ noServer: true });
 // Обработка подключения WebSocket
 wss.on('connection', (ws) => {
   console.log('Client connected');
+  fs.readFile('yandex_response.js', 'utf8', (err, data) => {
+    if (!err) {
+      ws.send(data);
+    } else {
+      console.error('Ошибка при чтении файла yandex_response.js:', err);
+      ws.send(JSON.stringify({ error: 'Failed to read yandex_response.js' }));
+    }
+  });
 
   // Обработка сообщений от клиента
   ws.on('message', async (message) => {
@@ -68,7 +76,6 @@ wss.on('connection', (ws) => {
           'Accept-Language': 'ru,en;q=0.9,la;q=0.8',
           'Content-Type': 'application/json',
           'x-csrf-token': 'c9a0b7620b6c7a9a8403c08be4ca47afcd33abb1:1734098245',
-          // Добавьте другие заголовки, если это необходимо
           'Cookie': documentText, // Замените на ваши куки
           'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 YaBrowser/24.10.0.0 Safari/537.36',
         }
@@ -105,8 +112,13 @@ const fetchDataFromAPI = async () => {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 YaBrowser/24.10.0.0 Safari/537.36',
       },
     });
+    
+    // Сохраняем ответ в файл yandex_response.js
+    fs.writeFileSync('yandex_response.js', JSON.stringify(response.data, null, 2));
+
     console.log(`Response status: ${response.status}`);
     console.log('Response data:', response.data);
+
     // Отправляем данные всем подключенным клиентам
     wss.clients.forEach((client) => {
       if (client.readyState === WebSocket.OPEN) {
@@ -118,8 +130,8 @@ const fetchDataFromAPI = async () => {
   }
 };
 
-// Запускаем периодический запрос каждые 30 секунд
-setInterval(fetchDataFromAPI, 30000);
+// Запускаем периодический запрос каждые 15 секунд
+setInterval(fetchDataFromAPI, 15000);
 
 // Обработка запросов на /api/orders
 app.post('/api/orders', async (req, res) => {
@@ -155,6 +167,7 @@ app.post('/api/orders', async (req, res) => {
     }
   }
 });
+
 app.get('/api/orders/tracking', async (req, res) => {
   try {
     const response = await fetch('https://market-delivery.yandex.ru/api/v2/orders/tracking', {
