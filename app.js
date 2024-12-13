@@ -50,7 +50,7 @@ wss.on('connection', (ws) => {
   // Обработка сообщений от клиента
   ws.on('message', async (message) => {
     const data = JSON.parse(message);
-    const { device_id, action_type, value } = data;
+    const { device_id, action_type, instance, value } = data;
 
     // Отправка запроса к API Яндекса
     try {
@@ -58,7 +58,7 @@ wss.on('connection', (ws) => {
         actions: [{
           type: action_type,
           state: {
-            instance: 'on', // Установите значение состояния
+            instance: instance, // Установите значение состояния
             value: value
           }
         }]
