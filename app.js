@@ -6,16 +6,34 @@ const fs = require('fs');
 const cors = require('cors');
 const http = require('http');
 const WebSocket = require('ws');
-const hostname = '192.168.0.19';
+const hostname = '192.168.0.21';
 const port = '8080';
 const app = express();
 const path = require('path');
 
-// Объявляем переменную для хранения текста
-let documentText = '';
+const Streamer_token = 'eyJraWQiOiJkZWZhdWx0X3Byb2R1Y3Rpb24iLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2Y2Zyb250X3Byb2R1Y3Rpb24iLCJzdWIiOjE5MjgwOTQsImlwIjoiMTAuNzguMzMuMiIsImNoYW5uZWwiOiJjYWFiNGU1MC1mOTYyLTQxZjAtYmM0NC1lN2U2NGM3MzBiYmQiLCJleHAiOjE3MzgxMTYwMDB9.lvcXDqe1239OseHyjVzxYCncRfk07cSEKHq3rGrNgiI';
+const x_token = '283d6818f32018820a47adc931f5a6eda26db185:1738751022';
 
-// Определяем путь к документу
+// Объявляем переменную для хранения текста
+let documentText = ''// Определяем путь к документу
 const filePath = path.join(__dirname, 'cookie.txt');
+const getTaskById = async (task_id) => {
+  try {
+    // Читаем файл task.json
+    const data = fs.readFileSync('tasks.json', 'utf8');;
+    
+    const tasks = JSON.parse(data); // Парсим JSON-данные
+
+    // Ищем задачу по task_id
+    const task = tasks.find(task => task.id === task_id); // Предполагается, что у каждой задачи есть поле id
+
+    return task || null; // Возвращаем задачу или null, если не найдена
+  } catch (error) {
+    console.error('Error fetching task:', error);
+    return null; // Возвращаем null в случае ошибки
+  }
+};
+
 
 // Читаем текст из файла
 fs.readFile(filePath, 'utf8', (err, data) => {
@@ -75,7 +93,7 @@ wss.on('connection', (ws) => {
           'Accept': '*/*',
           'Accept-Language': 'ru,en;q=0.9,la;q=0.8',
           'Content-Type': 'application/json',
-          'x-csrf-token': 'c9a0b7620b6c7a9a8403c08be4ca47afcd33abb1:1734098245',
+          'x-csrf-token': `${x_token}`,
           'Cookie': documentText, // Замените на ваши куки
           'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 YaBrowser/24.10.0.0 Safari/537.36',
         }
@@ -85,10 +103,10 @@ wss.on('connection', (ws) => {
       console.log('Response data:', response.data);
       await fetchDataFromAPI(); 
       // Отправляем ответ клиенту
-      ws.send(JSON.stringify({ status: 'success', data: response.data }));
+      ws.send(JSON.stringify({ type: 'response', status: 'success', data: response.data }));
     } catch (error) {
       console.error('Error sending data to Yandex API:', error);
-      ws.send(JSON.stringify({ status: 'error', message: 'Failed to send action' }));
+      ws.send(JSON.stringify({ type: 'yandex', status: 'error', message: 'Failed to send action' }));
     }
   });
 
@@ -122,7 +140,7 @@ const fetchDataFromAPI = async () => {
     // Отправляем данные всем подключенным клиентам
     wss.clients.forEach((client) => {
       if (client.readyState === WebSocket.OPEN) {
-        client.send(JSON.stringify(response.data));
+        client.send(JSON.stringify({ type: 'yandex', data: response.data }));
       }
     });
   } catch (error) {
@@ -133,40 +151,7 @@ const fetchDataFromAPI = async () => {
 // Запускаем периодический запрос каждые 15 секунд
 setInterval(fetchDataFromAPI, 15000);
 
-// Обработка запросов на /api/orders
-app.post('/api/orders', async (req, res) => {
-  // Заголовки запроса
-  const myHeaders = {
-    "accept": "application/json",
-    "accept-language": "ru,en;q=0.9,la;q=0.8",
-    "content-type": "application/json",
-    // ... другие заголовки
-  };
 
-  // Тело запроса
-  const raw = JSON.stringify({
-    "asyncData": "eyJ1cmwiOiIvIiwiY2kiOnsidmVydGljYWwiOiJjc21hIiwibmFtZSI6Im9yZGVyVHJhY2tpbmciLCJwYXJhbXMiOlt7Im5hbWUiOiJQcmVzZXQiLCJ0ZXh0IjoiMSJ9XSwidmVyc2lvbiI6NCwibGF5b3V0SUQiOjYxOTMsImlkIjozMjU3ODIxfX0="
-  });
-
-  try {
-    // Выполнение запроса к API Ozon
-    const response = await axios.post(
-      "https://www.ozon.ru/api/composer-api.bx/widget/json/v2?widgetStateId=orderTracking-3257821-default-1",
-      raw,
-      { headers: myHeaders }
-    );
-    // Отправка ответа клиенту
-    res.json(response.data);
-  } catch (error) {
-    console.error('Error fetching data from Ozon API:', error);
-    // Обработка ошибок
-    if (error.response) {
-      res.status(error.response.status).json(error.response.data);
-    } else {
-      res.status(500).send('Internal Server Error');
-    }
-  }
-});
 
 app.get('/api/orders/tracking', async (req, res) => {
   try {
@@ -175,7 +160,7 @@ app.get('/api/orders/tracking', async (req, res) => {
       headers: {
         "accept": "application/json, text/plain, */*",
         "accept-language": "ru",
-        "cookie": cookie,
+        "cookie": "_yasc=b2MuMqUMGkptwuLAw0Z2nctSFmNsarf/kpJTCX5FVE8itOgeFjVeGaBecSgrS1Usx3JoCIUyKocgVh2Vn8UnjKk=; Eats-Session=0a8335cc08924a569c0843ae519b6d3d",
         "priority": "u=1, i",
         "referer": "https://market-delivery.yandex.ru/orders",
         "sec-ch-ua": "\"Chromium\";v=\"128\", \"Not;A=Brand\";v=\"24\", \"YaBrowser\";v=\"24.10\", \"Yowser\";v=\"2.5\"",
@@ -207,6 +192,7 @@ app.get('/api/orders/tracking', async (req, res) => {
     const data = await response.json();
     res.json(data); // Send the data back to the client
   } catch (error) {
+
     res.status(500).send('Server Error');
   }
 });
@@ -222,6 +208,28 @@ app.get('/api/tasks', (req, res) => {
     res.status(500).send('Ошибка сервера');
   }
 });
+app.get('/api/tasks/:task_id', (req, res) => {
+  const { task_id } = req.params;
+
+  try {
+    const content = fs.readFileSync('tasks.json', 'utf8');
+    const tasks = JSON.parse(content);
+
+    // Ищем задачу по task_id
+    const task = tasks.find(task => task.task_id === task_id); // Предполагается, что у каждой задачи есть поле task_id
+
+    if (!task) {
+      return res.status(404).send('Task not found');
+    }
+
+    res.json(task);
+  } catch (error) {
+    console.error('Ошибка при чтении задач:', error);
+    res.status(500).send('Ошибка сервера');
+  }
+});
+
+
 
 // Создание новой задачи
 app.post('/api/tasks', (req, res) => {
@@ -230,6 +238,7 @@ app.post('/api/tasks', (req, res) => {
   const newTask = {
     task_id: req.body.task_id,
     kanban_id: req.body.kanban_id,
+    priority: req.body.priority,
     name: req.body.name,
     assignee: req.body.assignee,
     description: req.body.description,
@@ -316,6 +325,31 @@ app.use('/yandex/api', createProxyMiddleware({
 
 // Создание HTTP сервера
 const server = http.createServer(app);
+// Обработчик для стриминга видео
+const videoWebSocketUrl = `wss://live-vdk4.camera.rt.ru/stream/004acf75-a06b-4731-8949-ef801caa3412/1734261034.mp4?mp4-fragment-length=0.5&mp4-use-speed=0&mp4-afiller=1&token=${Streamer_token}`;
+
+// Создаем WebSocket клиент для видео
+const videoWsClient = new WebSocket(videoWebSocketUrl);
+
+videoWsClient.on('open', () => {
+  console.log('Connected to video source');
+});
+
+// Обработка сообщений от видео WebSocket
+videoWsClient.on('message', (data) => {
+  // Вы можете обрабатывать данные видео здесь
+  // Например, отправить их на всех подключенных клиентам
+  wss.clients.forEach((client) => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(JSON.stringify({ type: 'video', data: data }));
+    }
+  });
+});
+
+// Обработка ошибок
+videoWsClient.on('error', (error) => {
+  console.error('Video WebSocket error:', error);
+});
 
 // Обработка WebSocket соединений
 server.on('upgrade', (request, socket, head) => {
