@@ -228,7 +228,38 @@ app.get('/api/tasks/:task_id', (req, res) => {
     res.status(500).send('Ошибка сервера');
   }
 });
+app.get('/api/boards', (req, res) => {
+  try {
+    const content = fs.readFileSync('boards.json', 'utf8');
+    const boards = JSON.parse(content);
+    res.send(boards);
+  } catch (error) {
+    console.error('Ошибка при чтении досок:', error);
+    res.status(500).send('Ошибка сервера');
+  }
+});
 
+// Создание новой доски
+app.post('/api/boards', (req, res) => {
+  if (!req.body || !req.body.title) {
+    return res.status(400).send('Название доски не указано');
+  }
+
+  const newBoard = {
+    title: req.body.title
+  };
+
+  try {
+    const data = fs.readFileSync('boards.json', 'utf8');
+    const boards = JSON.parse(data);
+    boards.push(newBoard);
+    fs.writeFileSync('boards.json', JSON.stringify(boards, null, 2)); // Сохраняем с отступами для удобства чтения
+    res.status(201).send(newBoard);
+  } catch (error) {
+    console.error('Ошибка при создании доски:', error);
+    res.status(500).send('Ошибка сервера');
+  }
+});
 
 
 // Создание новой задачи
