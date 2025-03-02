@@ -6,13 +6,13 @@ const fs = require('fs');
 const cors = require('cors');
 const http = require('http');
 const WebSocket = require('ws');
-const hostname = '192.168.0.21';
+const hostname = '192.168.0.24';
 const port = '8080';
 const app = express();
 const path = require('path');
 
-const Streamer_token = 'eyJraWQiOiJkZWZhdWx0X3Byb2R1Y3Rpb24iLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2Y2Zyb250X3Byb2R1Y3Rpb24iLCJzdWIiOjE5MjgwOTQsImlwIjoiMTAuNzguMzMuMiIsImNoYW5uZWwiOiJjYWFiNGU1MC1mOTYyLTQxZjAtYmM0NC1lN2U2NGM3MzBiYmQiLCJleHAiOjE3MzgxMTYwMDB9.lvcXDqe1239OseHyjVzxYCncRfk07cSEKHq3rGrNgiI';
-const x_token = '283d6818f32018820a47adc931f5a6eda26db185:1738751022';
+var Streamer_token = 'eyJraWQiOiJkZWZhdWx0X3Byb2R1Y3Rpb24iLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2Y2Zyb250X3Byb2R1Y3Rpb24iLCJzdWIiOjE5MjgwOTQsImlwIjoiMTAuNzguMzMuMiIsImNoYW5uZWwiOiJjYWFiNGU1MC1mOTYyLTQxZjAtYmM0NC1lN2U2NGM3MzBiYmQiLCJleHAiOjE3MzgxMTYwMDB9.lvcXDqe1239OseHyjVzxYCncRfk07cSEKHq3rGrNgiI';
+var yandex_token="y0_AgAAAAArXzIrAAxS6gAAAAEO2JXXAACCh69E7NtBGKLnfg4LmBIPmXOMcA"
 
 // Объявляем переменную для хранения текста
 let documentText = ''// Определяем путь к документу
@@ -80,20 +80,25 @@ wss.on('connection', (ws) => {
 
     // Отправка запроса к API Яндекса
     try {
-      const response = await axios.post(`https://iot.quasar.yandex.ru/m/user/devices/${device_id}/actions`, {
-        actions: [{
-          type: action_type,
-          state: {
-            instance: instance, // Установите значение состояния
-            value: value
-          }
-        }]
+      const response = await axios.post(`https://api.iot.yandex.net/v1.0/devices/actions`, {
+        devices:[{
+          id: device_id,
+          actions: [{
+            type: action_type,
+            state: {
+              instance: instance, // Установите значение состояния
+              value: value
+            }
+          }]
+        }
+        
+        ]  
       }, {
         headers: {
           'Accept': '*/*',
           'Accept-Language': 'ru,en;q=0.9,la;q=0.8',
           'Content-Type': 'application/json',
-          'x-csrf-token': `${x_token}`,
+          'Authorization': `Bearer ${yandex_token}`,
           'Cookie': documentText, // Замените на ваши куки
           'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 YaBrowser/24.10.0.0 Safari/537.36',
         }
@@ -236,6 +241,35 @@ app.get('/api/boards', (req, res) => {
   } catch (error) {
     console.error('Ошибка при чтении досок:', error);
     res.status(500).send('Ошибка сервера');
+  }
+});
+const getToken = async () => {
+  try {
+    const response = await axios.get('https://vc.key.rt.ru/api/v1/cameras?limit=100&offset=0', {
+      headers: {
+        'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6InB1YmxpYzpiNGE4NjgwNC04NDhiLTQzYWQtYmY3Ny01MjI0M2MzZTNhNDEiLCJ0eXAiOiJKV1QifQ.eyJhdWQiOltdLCJjbGllbnRfaWQiOiJiV0Z6ZEdWeU9qYzRPVFUyTmpveE9USTRNRGswT2pFMk56QTZOVFV3T1RjNk16b3hOanBRUTNWWFpHRmpTV3h0VDBjcmRpdG1OekEwYzA4MVVtaGtNblpLV21reFRFNTNURkZ1UnprMk56aFpQUT09IiwiZXhwIjoxNzU2MDQ1OTU4LCJleHQiOnt9LCJpYXQiOjE3MjQ1MDk5NTgsImlzcyI6Imh0dHBzOi8vb2F1dGgyLmtleS5ydC5ydS8iLCJqdGkiOiJhNjY4YjkyMi01Y2YzLTQwNWQtOGViOS04NmE1OWU1M2ZhODkiLCJuYmYiOjE3MjQ1MDk5NTgsInNjcCI6W10sInN1YiI6ImJXRnpkR1Z5T2pjNE9UVTJOam94T1RJNE1EazBPakUyTnpBNk5UVXdPVGM2TXpveE5qcFFRM1ZYWkdGalNXeHRUMGNyZGl0bU56QTBjMDgxVW1oa01uWktXbWt4VEU1M1RGRnVSemsyTnpoWlBRPT0ifQ.nOj2EZ3ZBYdd4TPuoXPx3WZOqwYgmWBCu6go_vaB1rahvh5seseI-RlvzaiLDG8YTsCVJuUTsnNjm8xCTv6_JZyR77yE4Fk0w9l3GUP6LfsH6DYqmArP9Dk7dpkiqQAMAIv3aryee6GxsB_0vZKTJ9ud0qel46f8VsE4vl34okdUvBMpSvvIpwEwKJMoDp0oa6wVZN5k118vUURjsuIxvLd3d9fvD2izpDUkKwRKNE3tPSEAxD_huAYQLWk5zcqJh_yC8D_DSPNCzRM_9wtWebxyUVmFIILq_3KYIU7c6vVf7alea0yJlf6onK_zD-FOKytUCIa1YcYmxBQJ3RM0RHgI5KzbAOZmqzg49O4VzVNrh1sBrjPiKajmhmBZ8wIyoftBlnDeytwdTJOUDv80Tykw03FqaFAO5XaYfDPSatAP7Qti8x3M3fiJ92IFVj-e8xFdHpExCB3B8OItsh2gOkg2XWpG0n0prvfo2T-5NpKu8oRIoGOSIzvAJ-tB5PasTI1vGT1G_-mGJBHFElqBg6cIDNCIuAggBpE7xUB2nQQ1Bdm_SAzkgjTyj-dJl6s8aSfkKCoXhvmGIQWY1dF7KeL_hAkwr_vJK5e76dUfanFnqn8MO3E4YkvaIVAH-aF8nwRER-c20weP7kCTSNFg3kYFuY9qZxPLIs0OorH1Krg', // Скрыт заголовок Authorization
+        'Cookie': 'YOUR_COOKIE', // Скрыт заголовок Cookie
+      },
+    });
+
+    // Извлекаем токен из ответа
+    Streamer_token = response.data;
+    console.log('Полученный токен:', Streamer_token);
+    
+    // Возвращаем токен для дальнейшего использования
+    return Streamer_token;
+  } catch (error) {
+    console.error('Ошибка при получении токена:', error);
+    throw error; // Пробрасываем ошибку дальше
+  }
+};
+app.get('/api/streamertoken', async (req, res) => {
+  try {
+    const token_data = await getToken();
+    const token = token_data.data.items[1].streamer_token;
+    res.json({ token }); // Возвращаем токен в формате JSON
+  } catch (error) {
+    res.status(500).send('Ошибка при получении токена');
   }
 });
 
