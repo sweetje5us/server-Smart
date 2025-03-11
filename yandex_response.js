@@ -1,6 +1,6 @@
 {
   "status": "ok",
-  "request_id": "481cca81-e6e9-471c-88f9-96566718428a",
+  "request_id": "5e45f286-5c80-4394-bc10-4efb0fe8fa51",
   "households": [
     {
       "id": "dfff69a9-c33e-4b47-98f5-489c7af730fd",
@@ -34,15 +34,15 @@
                     "unit": "unit.percent"
                   },
                   "state": {
-                    "percent": 86,
+                    "percent": 89,
                     "status": "normal",
-                    "value": 86
+                    "value": 89
                   },
                   "trend": {
                     "status": "normal"
                   },
-                  "state_changed_at": "2025-03-07T05:14:40Z",
-                  "last_updated": "2025-03-07T05:14:40Z"
+                  "state_changed_at": "2025-03-11T04:55:25Z",
+                  "last_updated": "2025-03-11T05:50:22Z"
                 },
                 {
                   "type": "devices.properties.float",
@@ -56,10 +56,10 @@
                   "state": {
                     "percent": null,
                     "status": null,
-                    "value": -0.9
+                    "value": 0.8
                   },
-                  "state_changed_at": "2025-03-07T06:03:25Z",
-                  "last_updated": "2025-03-07T06:03:25Z"
+                  "state_changed_at": "2025-03-11T06:16:20Z",
+                  "last_updated": "2025-03-11T06:16:20Z"
                 },
                 {
                   "type": "devices.properties.float",
@@ -73,10 +73,10 @@
                   "state": {
                     "percent": null,
                     "status": null,
-                    "value": 737
+                    "value": 753
                   },
-                  "state_changed_at": "2025-03-07T05:28:34Z",
-                  "last_updated": "2025-03-07T06:03:25Z"
+                  "state_changed_at": "2025-03-11T05:59:05Z",
+                  "last_updated": "2025-03-11T06:16:20Z"
                 },
                 {
                   "type": "devices.properties.float",
@@ -88,12 +88,12 @@
                     "unit": "unit.percent"
                   },
                   "state": {
-                    "percent": 72,
+                    "percent": 76,
                     "status": "danger",
-                    "value": 72
+                    "value": 76
                   },
-                  "state_changed_at": "2025-03-07T06:03:25Z",
-                  "last_updated": "2025-03-07T06:03:25Z"
+                  "state_changed_at": "2025-03-11T06:16:20Z",
+                  "last_updated": "2025-03-11T06:16:20Z"
                 }
               ],
               "item_type": "device",
@@ -102,7 +102,7 @@
               "status_info": {
                 "status": "online",
                 "reportable": true,
-                "updated": 1741327406.831393,
+                "updated": 1741673780.977566,
                 "changed": 1738253631.413103
               },
               "state": "online",
@@ -125,7 +125,7 @@
             },
             {
               "id": "900dca1a-e53a-418c-82cc-5ebb8795e266",
-              "name": "Свет балкон",
+              "name": "Свет балкон 1",
               "type": "devices.types.light.ceiling",
               "icon_url": "https://avatars.mds.yandex.net/get-iot/icons-devices-devices.types.light.ceiling.svg/orig",
               "capabilities": [
@@ -149,7 +149,7 @@
               "room_name": "Балкон",
               "status_info": {
                 "status": "online",
-                "updated": 1741208831.579123,
+                "updated": 1741616318.009453,
                 "changed": 1734101796.169981
               },
               "state": "online",
@@ -196,7 +196,7 @@
                   "trend": {
                     "status": "normal"
                   },
-                  "last_updated": "2025-03-07T03:09:49Z"
+                  "last_updated": "2025-03-11T02:53:10Z"
                 },
                 {
                   "type": "devices.properties.float",
@@ -210,10 +210,10 @@
                   "state": {
                     "percent": null,
                     "status": null,
-                    "value": 551
+                    "value": 1
                   },
-                  "state_changed_at": "2025-03-07T05:53:54Z",
-                  "last_updated": "2025-03-07T05:53:54Z"
+                  "state_changed_at": "2025-03-11T06:27:57Z",
+                  "last_updated": "2025-03-11T06:27:57Z"
                 },
                 {
                   "type": "devices.properties.event",
@@ -251,8 +251,8 @@
                     "status": "normal",
                     "value": "detected"
                   },
-                  "last_activated": "2025-03-07T05:53:33Z",
-                  "last_updated": "2025-03-07T05:53:33Z"
+                  "last_activated": "2025-03-11T06:27:22Z",
+                  "last_updated": "2025-03-11T06:27:22Z"
                 }
               ],
               "item_type": "device",
@@ -261,7 +261,7 @@
               "status_info": {
                 "status": "online",
                 "reportable": true,
-                "updated": 1741326835.677005,
+                "updated": 1741674478.123927,
                 "changed": 1738253631.413103
               },
               "state": "online",
@@ -300,7 +300,7 @@
                   "trend": {
                     "status": "normal"
                   },
-                  "last_updated": "2025-03-07T06:03:37Z"
+                  "last_updated": "2025-03-11T06:13:21Z"
                 },
                 {
                   "type": "devices.properties.float",
@@ -314,10 +314,10 @@
                   "state": {
                     "percent": null,
                     "status": null,
-                    "value": 480
+                    "value": 1
                   },
-                  "state_changed_at": "2025-03-07T05:54:00Z",
-                  "last_updated": "2025-03-07T05:54:00Z"
+                  "state_changed_at": "2025-03-11T06:27:55Z",
+                  "last_updated": "2025-03-11T06:27:55Z"
                 },
                 {
                   "type": "devices.properties.event",
@@ -355,8 +355,8 @@
                     "status": "normal",
                     "value": "detected"
                   },
-                  "last_activated": "2025-03-07T05:53:29Z",
-                  "last_updated": "2025-03-07T05:53:29Z"
+                  "last_activated": "2025-03-11T06:27:22Z",
+                  "last_updated": "2025-03-11T06:27:22Z"
                 }
               ],
               "item_type": "device",
@@ -365,7 +365,7 @@
               "status_info": {
                 "status": "online",
                 "reportable": true,
-                "updated": 1741327418.410675,
+                "updated": 1741674476.215463,
                 "changed": 1738253631.413103
               },
               "state": "online",
@@ -404,7 +404,7 @@
                   "trend": {
                     "status": "normal"
                   },
-                  "last_updated": "2025-03-07T04:29:00Z"
+                  "last_updated": "2025-03-11T04:47:53Z"
                 },
                 {
                   "type": "devices.properties.float",
@@ -416,12 +416,12 @@
                     "unit": "unit.percent"
                   },
                   "state": {
-                    "percent": 27,
+                    "percent": 38,
                     "status": "warning",
-                    "value": 27
+                    "value": 38
                   },
-                  "state_changed_at": "2025-03-07T05:42:24Z",
-                  "last_updated": "2025-03-07T05:42:24Z"
+                  "state_changed_at": "2025-03-11T06:04:44Z",
+                  "last_updated": "2025-03-11T06:04:44Z"
                 },
                 {
                   "type": "devices.properties.float",
@@ -435,10 +435,10 @@
                   "state": {
                     "percent": null,
                     "status": null,
-                    "value": 27
+                    "value": 27.1
                   },
-                  "state_changed_at": "2025-03-07T05:42:23Z",
-                  "last_updated": "2025-03-07T05:42:23Z"
+                  "state_changed_at": "2025-03-11T06:04:44Z",
+                  "last_updated": "2025-03-11T06:04:44Z"
                 }
               ],
               "item_type": "device",
@@ -447,7 +447,7 @@
               "status_info": {
                 "status": "online",
                 "reportable": true,
-                "updated": 1741326145.48609,
+                "updated": 1741673085.822991,
                 "changed": 1738253631.413103
               },
               "state": "online",
@@ -492,7 +492,8 @@
                   "trend": {
                     "status": "normal"
                   },
-                  "last_updated": "2025-03-07T05:45:55Z"
+                  "state_changed_at": "2025-03-10T21:46:00Z",
+                  "last_updated": "2025-03-11T05:46:10Z"
                 },
                 {
                   "type": "devices.properties.event",
@@ -517,7 +518,7 @@
                     "status": "normal",
                     "value": "dry"
                   },
-                  "last_updated": "2025-03-05T01:47:37Z"
+                  "last_updated": "2025-03-10T05:49:16Z"
                 }
               ],
               "item_type": "device",
@@ -526,7 +527,7 @@
               "status_info": {
                 "status": "online",
                 "reportable": true,
-                "updated": 1741326356.350484,
+                "updated": 1741671971.17168,
                 "changed": 1738253631.413103
               },
               "state": "online",
@@ -543,7 +544,7 @@
             },
             {
               "id": "68695c4b-c4b3-4eef-bd06-0788f0b2b1e3",
-              "name": "Свет ванная",
+              "name": "Свет ванная 1",
               "type": "devices.types.light.ceiling",
               "icon_url": "https://avatars.mds.yandex.net/get-iot/icons-devices-devices.types.light.ceiling.svg/orig",
               "capabilities": [
@@ -553,7 +554,7 @@
                   "type": "devices.capabilities.on_off",
                   "state": {
                     "instance": "on",
-                    "value": false
+                    "value": true
                   },
                   "parameters": {
                     "split": false
@@ -567,7 +568,7 @@
               "room_name": "Ванная",
               "status_info": {
                 "status": "online",
-                "updated": 1741327412.195346,
+                "updated": 1741674445.031599,
                 "changed": 1738948113.494048
               },
               "state": "online",
@@ -772,7 +773,7 @@
               "status_info": {
                 "status": "online",
                 "reportable": true,
-                "updated": 1740826925.157489,
+                "updated": 1741559298.816371,
                 "changed": 1738253692.370784
               },
               "state": "online",
@@ -838,10 +839,10 @@
                   "state": {
                     "percent": null,
                     "status": null,
-                    "value": 24
+                    "value": 22.5
                   },
-                  "state_changed_at": "2025-02-06T07:08:39Z",
-                  "last_updated": "2025-02-06T07:08:39Z"
+                  "state_changed_at": "2025-03-07T15:21:37Z",
+                  "last_updated": "2025-03-07T15:21:37Z"
                 }
               ],
               "item_type": "device",
@@ -849,8 +850,8 @@
               "room_name": "Ванная",
               "status_info": {
                 "status": "no_data",
-                "updated": 1740927813.751348,
-                "changed": 1738825719.7466912
+                "updated": 1741622451.934597,
+                "changed": 1741360897.6708395
               },
               "state": "no_data",
               "created": "2024-08-08T13:25:25Z",
@@ -906,7 +907,7 @@
                   "trend": {
                     "status": "normal"
                   },
-                  "last_updated": "2025-03-07T05:38:28Z"
+                  "last_updated": "2025-03-11T05:31:48Z"
                 },
                 {
                   "type": "devices.properties.float",
@@ -920,10 +921,10 @@
                   "state": {
                     "percent": null,
                     "status": null,
-                    "value": 99
+                    "value": 2710
                   },
-                  "state_changed_at": "2025-03-07T05:37:18Z",
-                  "last_updated": "2025-03-07T05:37:18Z"
+                  "state_changed_at": "2025-03-11T04:40:21Z",
+                  "last_updated": "2025-03-11T04:40:21Z"
                 },
                 {
                   "type": "devices.properties.event",
@@ -961,8 +962,8 @@
                     "status": "normal",
                     "value": "detected"
                   },
-                  "last_activated": "2025-03-07T04:37:13Z",
-                  "last_updated": "2025-03-07T04:37:13Z"
+                  "last_activated": "2025-03-11T04:40:05Z",
+                  "last_updated": "2025-03-11T04:40:05Z"
                 }
               ],
               "item_type": "device",
@@ -971,7 +972,7 @@
               "status_info": {
                 "status": "online",
                 "reportable": true,
-                "updated": 1741325910.0927,
+                "updated": 1741671617.002937,
                 "changed": 1738253631.413103
               },
               "state": "online",
@@ -988,7 +989,7 @@
             },
             {
               "id": "bd142373-4be7-4a22-ba7f-67c62520e419",
-              "name": "Свет гардероб",
+              "name": "Свет гардероб 1",
               "type": "devices.types.light.ceiling",
               "icon_url": "https://avatars.mds.yandex.net/get-iot/icons-devices-devices.types.light.ceiling.svg/orig",
               "capabilities": [
@@ -1012,7 +1013,7 @@
               "room_name": "Гардероб",
               "status_info": {
                 "status": "online",
-                "updated": 1741322535.639859,
+                "updated": 1741668316.27588,
                 "changed": 1731230146.227602
               },
               "state": "online",
@@ -1047,7 +1048,7 @@
                   "type": "devices.capabilities.on_off",
                   "state": {
                     "instance": "on",
-                    "value": true
+                    "value": false
                   },
                   "parameters": {
                     "split": false
@@ -1113,7 +1114,7 @@
               "room_name": "Гостиная",
               "status_info": {
                 "status": "no_data",
-                "updated": 1741242885.89611,
+                "updated": 1741619580.843872,
                 "changed": 1737981838.4594262
               },
               "state": "no_data",
@@ -1200,7 +1201,7 @@
               "room_name": "Гостиная",
               "status_info": {
                 "status": "online",
-                "updated": 1741242886.127738,
+                "updated": 1741644131.019989,
                 "changed": 1738612793.865252
               },
               "state": "online",
@@ -1238,7 +1239,7 @@
                   "trend": {
                     "status": "normal"
                   },
-                  "last_updated": "2025-03-07T05:37:47Z"
+                  "last_updated": "2025-03-11T05:49:05Z"
                 },
                 {
                   "type": "devices.properties.float",
@@ -1250,12 +1251,12 @@
                     "unit": "unit.percent"
                   },
                   "state": {
-                    "percent": 28,
+                    "percent": 40,
                     "status": "warning",
-                    "value": 28
+                    "value": 40
                   },
-                  "state_changed_at": "2025-03-07T05:17:48Z",
-                  "last_updated": "2025-03-07T05:17:48Z"
+                  "state_changed_at": "2025-03-11T05:48:43Z",
+                  "last_updated": "2025-03-11T05:48:43Z"
                 },
                 {
                   "type": "devices.properties.float",
@@ -1269,10 +1270,10 @@
                   "state": {
                     "percent": null,
                     "status": null,
-                    "value": 24.1
+                    "value": 25
                   },
-                  "state_changed_at": "2025-03-07T05:17:48Z",
-                  "last_updated": "2025-03-07T05:17:48Z"
+                  "state_changed_at": "2025-03-11T05:48:43Z",
+                  "last_updated": "2025-03-11T05:48:43Z"
                 }
               ],
               "item_type": "device",
@@ -1281,7 +1282,7 @@
               "status_info": {
                 "status": "online",
                 "reportable": true,
-                "updated": 1741325868.580532,
+                "updated": 1741672146.021902,
                 "changed": 1738253631.413103
               },
               "state": "online",
@@ -1708,7 +1709,7 @@
               "room_name": "Гостиная",
               "status_info": {
                 "status": "online",
-                "updated": 1741180145.698261,
+                "updated": 1741601556.112225,
                 "changed": 1738072742.37062
               },
               "state": "online",
@@ -1748,7 +1749,7 @@
               "room_name": "Гостиная",
               "status_info": {
                 "status": "online",
-                "updated": 1741208843.741693,
+                "updated": 1741552209.065428,
                 "changed": 1738072742.37062
               },
               "state": "online",
@@ -1824,7 +1825,7 @@
               "room_name": "Гостиная",
               "status_info": {
                 "status": "online",
-                "updated": 1741317189.303879,
+                "updated": 1741664198.418177,
                 "changed": 1723476594.075531
               },
               "state": "online",
@@ -2028,7 +2029,7 @@
               "status_info": {
                 "status": "online",
                 "reportable": true,
-                "updated": 1741326101.096941,
+                "updated": 1741631826.314277,
                 "changed": 1738253892.426779
               },
               "state": "online",
@@ -2073,7 +2074,7 @@
                   "trend": {
                     "status": "normal"
                   },
-                  "last_updated": "2025-03-07T02:15:07Z"
+                  "last_updated": "2025-03-11T03:09:02Z"
                 },
                 {
                   "type": "devices.properties.event",
@@ -2111,8 +2112,8 @@
                     "status": "normal",
                     "value": "detected"
                   },
-                  "last_activated": "2025-03-07T06:07:36Z",
-                  "last_updated": "2025-03-07T06:07:36Z"
+                  "last_activated": "2025-03-11T06:27:16Z",
+                  "last_updated": "2025-03-11T06:27:16Z"
                 }
               ],
               "item_type": "device",
@@ -2121,7 +2122,7 @@
               "status_info": {
                 "status": "online",
                 "reportable": true,
-                "updated": 1741327657.463869,
+                "updated": 1741674497.878167,
                 "changed": 1738253631.413103
               },
               "state": "online",
@@ -2160,7 +2161,7 @@
                   "trend": {
                     "status": "normal"
                   },
-                  "last_updated": "2025-03-07T02:18:45Z"
+                  "last_updated": "2025-03-11T03:28:33Z"
                 },
                 {
                   "type": "devices.properties.float",
@@ -2174,10 +2175,10 @@
                   "state": {
                     "percent": null,
                     "status": null,
-                    "value": 2227
+                    "value": 2094
                   },
-                  "state_changed_at": "2025-03-07T06:04:35Z",
-                  "last_updated": "2025-03-07T06:04:35Z"
+                  "state_changed_at": "2025-03-11T05:31:46Z",
+                  "last_updated": "2025-03-11T05:31:46Z"
                 },
                 {
                   "type": "devices.properties.event",
@@ -2215,8 +2216,8 @@
                     "status": "normal",
                     "value": "detected"
                   },
-                  "last_activated": "2025-03-07T06:04:24Z",
-                  "last_updated": "2025-03-07T06:04:24Z"
+                  "last_activated": "2025-03-11T04:31:33Z",
+                  "last_updated": "2025-03-11T04:31:33Z"
                 }
               ],
               "item_type": "device",
@@ -2225,7 +2226,7 @@
               "status_info": {
                 "status": "online",
                 "reportable": true,
-                "updated": 1741327476.415647,
+                "updated": 1741671107.246965,
                 "changed": 1738253631.413103
               },
               "state": "online",
@@ -2532,20 +2533,8 @@
                         "name": "Вечеринка"
                       },
                       {
-                        "id": "snake",
-                        "name": "Год змеи"
-                      },
-                      {
-                        "id": "gaming",
-                        "name": "Игра"
-                      },
-                      {
                         "id": "night",
                         "name": "Вечерний"
-                      },
-                      {
-                        "id": "christmas",
-                        "name": "Рождество"
                       },
                       {
                         "id": "romance",
@@ -2558,10 +2547,6 @@
                       {
                         "id": "northern",
                         "name": "Северное сияние"
-                      },
-                      {
-                        "id": "fairy",
-                        "name": "Сказочные огни"
                       },
                       {
                         "id": "reading",
@@ -2606,8 +2591,8 @@
               "status_info": {
                 "status": "online",
                 "reportable": true,
-                "updated": 1741324212.046324,
-                "changed": 1739745798.963376
+                "updated": 1741673431.636009,
+                "changed": 1741559920.554321
               },
               "state": "online",
               "render_info": {
@@ -2665,10 +2650,10 @@
                   "state": {
                     "percent": null,
                     "status": null,
-                    "value": 231
+                    "value": 230
                   },
-                  "state_changed_at": "2025-03-07T04:45:41Z",
-                  "last_updated": "2025-03-07T04:45:41Z"
+                  "state_changed_at": "2025-03-11T06:17:30Z",
+                  "last_updated": "2025-03-11T06:17:30Z"
                 },
                 {
                   "type": "devices.properties.float",
@@ -2684,8 +2669,8 @@
                     "status": null,
                     "value": 0
                   },
-                  "state_changed_at": "2025-03-06T03:52:52Z",
-                  "last_updated": "2025-03-06T03:52:52Z"
+                  "state_changed_at": "2025-03-11T04:17:30Z",
+                  "last_updated": "2025-03-11T04:17:30Z"
                 },
                 {
                   "type": "devices.properties.float",
@@ -2701,8 +2686,8 @@
                     "status": null,
                     "value": 0
                   },
-                  "state_changed_at": "2025-03-06T03:52:52Z",
-                  "last_updated": "2025-03-06T03:52:52Z"
+                  "state_changed_at": "2025-03-11T04:17:30Z",
+                  "last_updated": "2025-03-11T04:17:30Z"
                 }
               ],
               "item_type": "device",
@@ -2711,7 +2696,7 @@
               "status_info": {
                 "status": "online",
                 "reportable": true,
-                "updated": 1741324059.561362,
+                "updated": 1741673851.114282,
                 "changed": 1738673796.858098
               },
               "state": "online",
@@ -2802,7 +2787,7 @@
               "status_info": {
                 "status": "online",
                 "reportable": true,
-                "updated": 1741327726.994009,
+                "updated": 1741674508.688102,
                 "changed": 1736240163.772226
               },
               "state": "online",
@@ -2839,7 +2824,7 @@
               "room_name": "Кухня",
               "status_info": {
                 "status": "online",
-                "updated": 1741324059.273864,
+                "updated": 1741668095.703471,
                 "changed": 1738253647.455466
               },
               "state": "online",
@@ -2865,7 +2850,7 @@
                   "type": "devices.capabilities.on_off",
                   "state": {
                     "instance": "on",
-                    "value": false
+                    "value": true
                   },
                   "parameters": {
                     "split": false
@@ -2879,7 +2864,7 @@
               "room_name": "Кухня",
               "status_info": {
                 "status": "online",
-                "updated": 1741208853.210993,
+                "updated": 1741628795.305913,
                 "changed": 1738253647.455466
               },
               "state": "online",
@@ -2905,7 +2890,7 @@
                   "type": "devices.capabilities.on_off",
                   "state": {
                     "instance": "on",
-                    "value": false
+                    "value": true
                   },
                   "parameters": {
                     "split": false
@@ -2919,7 +2904,7 @@
               "room_name": "Кухня",
               "status_info": {
                 "status": "online",
-                "updated": 1738964221.859982,
+                "updated": 1741347920.464672,
                 "changed": 1723476594.075531
               },
               "state": "online",
@@ -2963,7 +2948,7 @@
                   "trend": {
                     "status": "normal"
                   },
-                  "last_updated": "2025-03-07T05:25:27Z"
+                  "last_updated": "2025-03-11T05:57:41Z"
                 },
                 {
                   "type": "devices.properties.event",
@@ -2992,8 +2977,8 @@
                     "status": "normal",
                     "value": "click"
                   },
-                  "last_activated": "2025-03-06T03:32:31Z",
-                  "last_updated": "2025-03-06T03:32:31Z"
+                  "last_activated": "2025-03-11T04:17:27Z",
+                  "last_updated": "2025-03-11T04:17:27Z"
                 }
               ],
               "item_type": "device",
@@ -3002,7 +2987,7 @@
               "status_info": {
                 "status": "online",
                 "reportable": true,
-                "updated": 1741325129.209791,
+                "updated": 1741672663.007659,
                 "changed": 1738253631.413103
               },
               "state": "online",
@@ -3088,7 +3073,7 @@
                   "trend": {
                     "status": "normal"
                   },
-                  "last_updated": "2025-03-07T05:34:35Z"
+                  "last_updated": "2025-03-11T05:41:53Z"
                 },
                 {
                   "type": "devices.properties.float",
@@ -3102,10 +3087,10 @@
                   "state": {
                     "percent": null,
                     "status": null,
-                    "value": 1192
+                    "value": 2680
                   },
-                  "state_changed_at": "2025-03-07T06:09:01Z",
-                  "last_updated": "2025-03-07T06:09:01Z"
+                  "state_changed_at": "2025-03-11T06:28:00Z",
+                  "last_updated": "2025-03-11T06:28:00Z"
                 },
                 {
                   "type": "devices.properties.event",
@@ -3143,8 +3128,8 @@
                     "status": "normal",
                     "value": "detected"
                   },
-                  "last_activated": "2025-03-07T06:08:45Z",
-                  "last_updated": "2025-03-07T06:08:45Z"
+                  "last_activated": "2025-03-11T06:27:44Z",
+                  "last_updated": "2025-03-11T06:27:44Z"
                 }
               ],
               "item_type": "device",
@@ -3153,7 +3138,7 @@
               "status_info": {
                 "status": "online",
                 "reportable": true,
-                "updated": 1741327742.354732,
+                "updated": 1741674481.074445,
                 "changed": 1738253631.413103
               },
               "state": "online",
@@ -3192,7 +3177,7 @@
                   "trend": {
                     "status": "normal"
                   },
-                  "last_updated": "2025-03-07T03:33:14Z"
+                  "last_updated": "2025-03-11T03:24:27Z"
                 },
                 {
                   "type": "devices.properties.float",
@@ -3204,12 +3189,12 @@
                     "unit": "unit.percent"
                   },
                   "state": {
-                    "percent": 25,
+                    "percent": 35,
                     "status": "warning",
-                    "value": 25
+                    "value": 35
                   },
-                  "state_changed_at": "2025-03-07T05:14:43Z",
-                  "last_updated": "2025-03-07T05:14:43Z"
+                  "state_changed_at": "2025-03-11T06:19:00Z",
+                  "last_updated": "2025-03-11T06:19:00Z"
                 },
                 {
                   "type": "devices.properties.float",
@@ -3223,10 +3208,10 @@
                   "state": {
                     "percent": null,
                     "status": null,
-                    "value": 26.1
+                    "value": 26.3
                   },
-                  "state_changed_at": "2025-03-07T05:14:43Z",
-                  "last_updated": "2025-03-07T05:14:43Z"
+                  "state_changed_at": "2025-03-11T06:18:59Z",
+                  "last_updated": "2025-03-11T06:18:59Z"
                 }
               ],
               "item_type": "device",
@@ -3235,7 +3220,7 @@
               "status_info": {
                 "status": "online",
                 "reportable": true,
-                "updated": 1741324485.302756,
+                "updated": 1741673941.549699,
                 "changed": 1738253631.413103
               },
               "state": "online",
@@ -3304,7 +3289,7 @@
             },
             {
               "id": "75cb6fc4-3fd9-4c60-a2ef-ba32cf97961f",
-              "name": "Свет прихожая",
+              "name": "Свет прихожая 1",
               "type": "devices.types.light.ceiling",
               "icon_url": "https://avatars.mds.yandex.net/get-iot/icons-devices-devices.types.light.ceiling.svg/orig",
               "capabilities": [
@@ -3314,7 +3299,7 @@
                   "type": "devices.capabilities.on_off",
                   "state": {
                     "instance": "on",
-                    "value": false
+                    "value": true
                   },
                   "parameters": {
                     "split": false
@@ -3328,7 +3313,7 @@
               "room_name": "Прихожая",
               "status_info": {
                 "status": "online",
-                "updated": 1741327583.407907,
+                "updated": 1741674440.768028,
                 "changed": 1738474799.703483
               },
               "state": "online",
@@ -3507,7 +3492,7 @@
                     "status": "normal",
                     "value": 100
                   },
-                  "last_updated": "2025-03-07T03:49:08Z"
+                  "last_updated": "2025-03-11T03:42:07Z"
                 }
               ],
               "item_type": "multidevice",
@@ -3523,7 +3508,7 @@
               "status_info": {
                 "status": "online",
                 "reportable": true,
-                "updated": 1741319350.970702,
+                "updated": 1741671722.266232,
                 "changed": 1738328118.802211
               },
               "state": "online",
@@ -3563,7 +3548,7 @@
                   "trend": {
                     "status": "normal"
                   },
-                  "last_updated": "2025-03-07T02:37:26Z"
+                  "last_updated": "2025-03-11T02:34:59Z"
                 },
                 {
                   "type": "devices.properties.float",
@@ -3575,12 +3560,12 @@
                     "unit": "unit.percent"
                   },
                   "state": {
-                    "percent": 36,
-                    "status": "warning",
-                    "value": 36
+                    "percent": 42,
+                    "status": "normal",
+                    "value": 42
                   },
-                  "state_changed_at": "2025-03-07T05:41:49Z",
-                  "last_updated": "2025-03-07T05:41:49Z"
+                  "state_changed_at": "2025-03-11T06:04:08Z",
+                  "last_updated": "2025-03-11T06:04:08Z"
                 },
                 {
                   "type": "devices.properties.float",
@@ -3594,10 +3579,10 @@
                   "state": {
                     "percent": null,
                     "status": null,
-                    "value": 23.3
+                    "value": 23.4
                   },
-                  "state_changed_at": "2025-03-07T05:41:48Z",
-                  "last_updated": "2025-03-07T05:41:48Z"
+                  "state_changed_at": "2025-03-11T06:04:08Z",
+                  "last_updated": "2025-03-11T06:04:08Z"
                 }
               ],
               "item_type": "device",
@@ -3606,7 +3591,7 @@
               "status_info": {
                 "status": "online",
                 "reportable": true,
-                "updated": 1741326110.48522,
+                "updated": 1741673049.796589,
                 "changed": 1738253631.413103
               },
               "state": "online",
@@ -3662,8 +3647,8 @@
                     "status": null,
                     "value": 231
                   },
-                  "state_changed_at": "2025-03-07T04:45:41Z",
-                  "last_updated": "2025-03-07T04:45:41Z"
+                  "state_changed_at": "2025-03-11T03:54:31Z",
+                  "last_updated": "2025-03-11T03:54:31Z"
                 },
                 {
                   "type": "devices.properties.float",
@@ -3679,8 +3664,8 @@
                     "status": null,
                     "value": 0
                   },
-                  "state_changed_at": "2025-03-06T16:39:12Z",
-                  "last_updated": "2025-03-06T16:39:12Z"
+                  "state_changed_at": "2025-03-10T19:54:28Z",
+                  "last_updated": "2025-03-10T19:54:28Z"
                 },
                 {
                   "type": "devices.properties.float",
@@ -3696,8 +3681,8 @@
                     "status": null,
                     "value": 0
                   },
-                  "state_changed_at": "2025-03-06T16:39:12Z",
-                  "last_updated": "2025-03-06T16:39:12Z"
+                  "state_changed_at": "2025-03-10T19:54:28Z",
+                  "last_updated": "2025-03-10T19:54:28Z"
                 }
               ],
               "item_type": "device",
@@ -3706,8 +3691,8 @@
               "status_info": {
                 "status": "online",
                 "reportable": true,
-                "updated": 1741324367.615113,
-                "changed": 1741324367.615113
+                "updated": 1741665272.280695,
+                "changed": 1741612627.567852
               },
               "state": "online",
               "render_info": {
@@ -3765,8 +3750,7 @@
                     "status": "normal",
                     "value": "click"
                   },
-                  "last_activated": "2025-03-06T14:54:49Z",
-                  "last_updated": "2025-03-06T14:54:49Z"
+                  "last_updated": "2025-03-10T03:47:41Z"
                 }
               ],
               "item_type": "device",
@@ -3776,7 +3760,7 @@
               "status_info": {
                 "status": "online",
                 "reportable": true,
-                "updated": 1741319350.581346,
+                "updated": 1741671721.836153,
                 "changed": 1738328118.802211
               },
               "state": "online",
@@ -3826,8 +3810,8 @@
                     "status": "normal",
                     "value": "click"
                   },
-                  "last_activated": "2025-03-06T19:40:53Z",
-                  "last_updated": "2025-03-06T19:40:53Z"
+                  "last_activated": "2025-03-10T18:39:30Z",
+                  "last_updated": "2025-03-10T18:39:30Z"
                 }
               ],
               "item_type": "device",
@@ -3837,7 +3821,7 @@
               "status_info": {
                 "status": "online",
                 "reportable": true,
-                "updated": 1741319350.026865,
+                "updated": 1741671720.9535,
                 "changed": 1738328008.872791
               },
               "state": "online",
@@ -3891,8 +3875,8 @@
                     "status": "normal",
                     "value": "click"
                   },
-                  "last_activated": "2025-03-06T14:54:48Z",
-                  "last_updated": "2025-03-06T14:54:48Z"
+                  "last_activated": "2025-03-10T19:47:26Z",
+                  "last_updated": "2025-03-10T19:47:26Z"
                 }
               ],
               "item_type": "device",
@@ -3902,7 +3886,7 @@
               "status_info": {
                 "status": "online",
                 "reportable": true,
-                "updated": 1741319350.970702,
+                "updated": 1741671722.266232,
                 "changed": 1738328044.286817
               },
               "state": "online",
@@ -3952,9 +3936,8 @@
                     "status": "normal",
                     "value": "click"
                   },
-                  "last_activated": "2025-03-06T09:56:46Z",
-                  "state_changed_at": "2025-03-06T09:56:46Z",
-                  "last_updated": "2025-03-06T19:44:51Z"
+                  "last_activated": "2025-03-10T18:39:29Z",
+                  "last_updated": "2025-03-10T18:39:29Z"
                 }
               ],
               "item_type": "device",
@@ -3964,7 +3947,7 @@
               "status_info": {
                 "status": "online",
                 "reportable": true,
-                "updated": 1741319350.313714,
+                "updated": 1741671721.522413,
                 "changed": 1738328036.711349
               },
               "state": "online",
@@ -4048,46 +4031,6 @@
               ]
             },
             {
-              "id": "e2aa81c1-1bdb-454b-8881-82c17289d472",
-              "name": "Свет спальня 1",
-              "type": "devices.types.light.ceiling",
-              "icon_url": "https://avatars.mds.yandex.net/get-iot/icons-devices-devices.types.light.ceiling.svg/orig",
-              "capabilities": [
-                {
-                  "reportable": true,
-                  "retrievable": true,
-                  "type": "devices.capabilities.on_off",
-                  "state": {
-                    "instance": "on",
-                    "value": true
-                  },
-                  "parameters": {
-                    "split": false
-                  },
-                  "can_be_deferred": true
-                }
-              ],
-              "properties": [],
-              "item_type": "device",
-              "skill_id": "35e2897a-c583-495a-9e33-f5d6f0f4cb49",
-              "room_name": "Спальня",
-              "status_info": {
-                "status": "online",
-                "updated": 1741290060.073774,
-                "changed": 1723220145.990545
-              },
-              "state": "online",
-              "created": "2024-08-08T13:25:23Z",
-              "parameters": {
-                "device_info": {
-                  "manufacturer": "TUYA INC.",
-                  "model": "二路开关 CB3S",
-                  "hw_version": "1.0",
-                  "sw_version": "1.0"
-                }
-              }
-            },
-            {
               "id": "1da20807-9966-4c1b-ae47-8665c5c989d3",
               "name": "Свет спальня 2",
               "type": "devices.types.light.ceiling",
@@ -4113,8 +4056,48 @@
               "room_name": "Спальня",
               "status_info": {
                 "status": "online",
-                "updated": 1741290293.297703,
+                "updated": 1741636142.834156,
                 "changed": 1729182526.875941
+              },
+              "state": "online",
+              "created": "2024-08-08T13:25:23Z",
+              "parameters": {
+                "device_info": {
+                  "manufacturer": "TUYA INC.",
+                  "model": "二路开关 CB3S",
+                  "hw_version": "1.0",
+                  "sw_version": "1.0"
+                }
+              }
+            },
+            {
+              "id": "e2aa81c1-1bdb-454b-8881-82c17289d472",
+              "name": "Свет спальня не активен",
+              "type": "devices.types.light.ceiling",
+              "icon_url": "https://avatars.mds.yandex.net/get-iot/icons-devices-devices.types.light.ceiling.svg/orig",
+              "capabilities": [
+                {
+                  "reportable": true,
+                  "retrievable": true,
+                  "type": "devices.capabilities.on_off",
+                  "state": {
+                    "instance": "on",
+                    "value": false
+                  },
+                  "parameters": {
+                    "split": false
+                  },
+                  "can_be_deferred": true
+                }
+              ],
+              "properties": [],
+              "item_type": "device",
+              "skill_id": "35e2897a-c583-495a-9e33-f5d6f0f4cb49",
+              "room_name": "Спальня",
+              "status_info": {
+                "status": "online",
+                "updated": 1741636142.834156,
+                "changed": 1723220145.990545
               },
               "state": "online",
               "created": "2024-08-08T13:25:23Z",
@@ -4160,10 +4143,10 @@
                   "state": {
                     "percent": null,
                     "status": null,
-                    "value": 231
+                    "value": 230
                   },
-                  "state_changed_at": "2025-03-07T05:43:41Z",
-                  "last_updated": "2025-03-07T05:43:41Z"
+                  "state_changed_at": "2025-03-11T06:10:08Z",
+                  "last_updated": "2025-03-11T06:10:08Z"
                 },
                 {
                   "type": "devices.properties.float",
@@ -4206,8 +4189,8 @@
               "status_info": {
                 "status": "online",
                 "reportable": true,
-                "updated": 1741326221.964788,
-                "changed": 1741230204.772377
+                "updated": 1741673408.835895,
+                "changed": 1741610565.503226
               },
               "state": "online",
               "render_info": {
@@ -4461,7 +4444,7 @@
               "status_info": {
                 "status": "online",
                 "reportable": true,
-                "updated": 1741326101.94284,
+                "updated": 1741631826.811899,
                 "changed": 1738253631.318969
               },
               "state": "online",
@@ -4585,7 +4568,7 @@
                 "status": "normal",
                 "value": 100
               },
-              "last_updated": "2025-03-07T03:49:08Z"
+              "last_updated": "2025-03-11T03:42:07Z"
             }
           ],
           "item_type": "multidevice",
@@ -4601,7 +4584,7 @@
           "status_info": {
             "status": "online",
             "reportable": true,
-            "updated": 1741319350.970702,
+            "updated": 1741671722.266232,
             "changed": 1738328118.802211
           },
           "state": "online",
@@ -4629,7 +4612,7 @@
               "type": "devices.capabilities.on_off",
               "state": {
                 "instance": "on",
-                "value": true
+                "value": false
               },
               "parameters": {
                 "split": false
@@ -4695,7 +4678,7 @@
           "room_name": "Гостиная",
           "status_info": {
             "status": "no_data",
-            "updated": 1741242885.89611,
+            "updated": 1741619580.843872,
             "changed": 1737981838.4594262
           },
           "state": "no_data",
@@ -4782,7 +4765,7 @@
           "room_name": "Гостиная",
           "status_info": {
             "status": "online",
-            "updated": 1741242886.127738,
+            "updated": 1741644131.019989,
             "changed": 1738612793.865252
           },
           "state": "online",
@@ -4820,7 +4803,7 @@
               "trend": {
                 "status": "normal"
               },
-              "last_updated": "2025-03-07T05:38:28Z"
+              "last_updated": "2025-03-11T05:31:48Z"
             },
             {
               "type": "devices.properties.float",
@@ -4834,10 +4817,10 @@
               "state": {
                 "percent": null,
                 "status": null,
-                "value": 99
+                "value": 2710
               },
-              "state_changed_at": "2025-03-07T05:37:18Z",
-              "last_updated": "2025-03-07T05:37:18Z"
+              "state_changed_at": "2025-03-11T04:40:21Z",
+              "last_updated": "2025-03-11T04:40:21Z"
             },
             {
               "type": "devices.properties.event",
@@ -4875,8 +4858,8 @@
                 "status": "normal",
                 "value": "detected"
               },
-              "last_activated": "2025-03-07T04:37:13Z",
-              "last_updated": "2025-03-07T04:37:13Z"
+              "last_activated": "2025-03-11T04:40:05Z",
+              "last_updated": "2025-03-11T04:40:05Z"
             }
           ],
           "item_type": "device",
@@ -4885,7 +4868,7 @@
           "status_info": {
             "status": "online",
             "reportable": true,
-            "updated": 1741325910.0927,
+            "updated": 1741671617.002937,
             "changed": 1738253631.413103
           },
           "state": "online",
@@ -4924,7 +4907,7 @@
               "trend": {
                 "status": "normal"
               },
-              "last_updated": "2025-03-07T02:15:07Z"
+              "last_updated": "2025-03-11T03:09:02Z"
             },
             {
               "type": "devices.properties.event",
@@ -4962,8 +4945,8 @@
                 "status": "normal",
                 "value": "detected"
               },
-              "last_activated": "2025-03-07T06:07:36Z",
-              "last_updated": "2025-03-07T06:07:36Z"
+              "last_activated": "2025-03-11T06:27:16Z",
+              "last_updated": "2025-03-11T06:27:16Z"
             }
           ],
           "item_type": "device",
@@ -4972,7 +4955,7 @@
           "status_info": {
             "status": "online",
             "reportable": true,
-            "updated": 1741327657.463869,
+            "updated": 1741674497.878167,
             "changed": 1738253631.413103
           },
           "state": "online",
@@ -5011,7 +4994,7 @@
               "trend": {
                 "status": "normal"
               },
-              "last_updated": "2025-03-07T03:09:49Z"
+              "last_updated": "2025-03-11T02:53:10Z"
             },
             {
               "type": "devices.properties.float",
@@ -5025,10 +5008,10 @@
               "state": {
                 "percent": null,
                 "status": null,
-                "value": 551
+                "value": 1
               },
-              "state_changed_at": "2025-03-07T05:53:54Z",
-              "last_updated": "2025-03-07T05:53:54Z"
+              "state_changed_at": "2025-03-11T06:27:57Z",
+              "last_updated": "2025-03-11T06:27:57Z"
             },
             {
               "type": "devices.properties.event",
@@ -5066,8 +5049,8 @@
                 "status": "normal",
                 "value": "detected"
               },
-              "last_activated": "2025-03-07T05:53:33Z",
-              "last_updated": "2025-03-07T05:53:33Z"
+              "last_activated": "2025-03-11T06:27:22Z",
+              "last_updated": "2025-03-11T06:27:22Z"
             }
           ],
           "item_type": "device",
@@ -5076,7 +5059,7 @@
           "status_info": {
             "status": "online",
             "reportable": true,
-            "updated": 1741326835.677005,
+            "updated": 1741674478.123927,
             "changed": 1738253631.413103
           },
           "state": "online",
@@ -5115,7 +5098,7 @@
               "trend": {
                 "status": "normal"
               },
-              "last_updated": "2025-03-07T02:18:45Z"
+              "last_updated": "2025-03-11T03:28:33Z"
             },
             {
               "type": "devices.properties.float",
@@ -5129,10 +5112,10 @@
               "state": {
                 "percent": null,
                 "status": null,
-                "value": 2227
+                "value": 2094
               },
-              "state_changed_at": "2025-03-07T06:04:35Z",
-              "last_updated": "2025-03-07T06:04:35Z"
+              "state_changed_at": "2025-03-11T05:31:46Z",
+              "last_updated": "2025-03-11T05:31:46Z"
             },
             {
               "type": "devices.properties.event",
@@ -5170,8 +5153,8 @@
                 "status": "normal",
                 "value": "detected"
               },
-              "last_activated": "2025-03-07T06:04:24Z",
-              "last_updated": "2025-03-07T06:04:24Z"
+              "last_activated": "2025-03-11T04:31:33Z",
+              "last_updated": "2025-03-11T04:31:33Z"
             }
           ],
           "item_type": "device",
@@ -5180,7 +5163,7 @@
           "status_info": {
             "status": "online",
             "reportable": true,
-            "updated": 1741327476.415647,
+            "updated": 1741671107.246965,
             "changed": 1738253631.413103
           },
           "state": "online",
@@ -5219,7 +5202,7 @@
               "trend": {
                 "status": "normal"
               },
-              "last_updated": "2025-03-07T05:34:35Z"
+              "last_updated": "2025-03-11T05:41:53Z"
             },
             {
               "type": "devices.properties.float",
@@ -5233,10 +5216,10 @@
               "state": {
                 "percent": null,
                 "status": null,
-                "value": 1192
+                "value": 2680
               },
-              "state_changed_at": "2025-03-07T06:09:01Z",
-              "last_updated": "2025-03-07T06:09:01Z"
+              "state_changed_at": "2025-03-11T06:28:00Z",
+              "last_updated": "2025-03-11T06:28:00Z"
             },
             {
               "type": "devices.properties.event",
@@ -5274,8 +5257,8 @@
                 "status": "normal",
                 "value": "detected"
               },
-              "last_activated": "2025-03-07T06:08:45Z",
-              "last_updated": "2025-03-07T06:08:45Z"
+              "last_activated": "2025-03-11T06:27:44Z",
+              "last_updated": "2025-03-11T06:27:44Z"
             }
           ],
           "item_type": "device",
@@ -5284,7 +5267,7 @@
           "status_info": {
             "status": "online",
             "reportable": true,
-            "updated": 1741327742.354732,
+            "updated": 1741674481.074445,
             "changed": 1738253631.413103
           },
           "state": "online",
@@ -5323,7 +5306,7 @@
               "trend": {
                 "status": "normal"
               },
-              "last_updated": "2025-03-07T06:03:37Z"
+              "last_updated": "2025-03-11T06:13:21Z"
             },
             {
               "type": "devices.properties.float",
@@ -5337,10 +5320,10 @@
               "state": {
                 "percent": null,
                 "status": null,
-                "value": 480
+                "value": 1
               },
-              "state_changed_at": "2025-03-07T05:54:00Z",
-              "last_updated": "2025-03-07T05:54:00Z"
+              "state_changed_at": "2025-03-11T06:27:55Z",
+              "last_updated": "2025-03-11T06:27:55Z"
             },
             {
               "type": "devices.properties.event",
@@ -5378,8 +5361,8 @@
                 "status": "normal",
                 "value": "detected"
               },
-              "last_activated": "2025-03-07T05:53:29Z",
-              "last_updated": "2025-03-07T05:53:29Z"
+              "last_activated": "2025-03-11T06:27:22Z",
+              "last_updated": "2025-03-11T06:27:22Z"
             }
           ],
           "item_type": "device",
@@ -5388,7 +5371,7 @@
           "status_info": {
             "status": "online",
             "reportable": true,
-            "updated": 1741327418.410675,
+            "updated": 1741674476.215463,
             "changed": 1738253631.413103
           },
           "state": "online",
@@ -5427,7 +5410,7 @@
               "trend": {
                 "status": "normal"
               },
-              "last_updated": "2025-03-07T03:33:14Z"
+              "last_updated": "2025-03-11T03:24:27Z"
             },
             {
               "type": "devices.properties.float",
@@ -5439,12 +5422,12 @@
                 "unit": "unit.percent"
               },
               "state": {
-                "percent": 25,
+                "percent": 35,
                 "status": "warning",
-                "value": 25
+                "value": 35
               },
-              "state_changed_at": "2025-03-07T05:14:43Z",
-              "last_updated": "2025-03-07T05:14:43Z"
+              "state_changed_at": "2025-03-11T06:19:00Z",
+              "last_updated": "2025-03-11T06:19:00Z"
             },
             {
               "type": "devices.properties.float",
@@ -5458,10 +5441,10 @@
               "state": {
                 "percent": null,
                 "status": null,
-                "value": 26.1
+                "value": 26.3
               },
-              "state_changed_at": "2025-03-07T05:14:43Z",
-              "last_updated": "2025-03-07T05:14:43Z"
+              "state_changed_at": "2025-03-11T06:18:59Z",
+              "last_updated": "2025-03-11T06:18:59Z"
             }
           ],
           "item_type": "device",
@@ -5470,7 +5453,7 @@
           "status_info": {
             "status": "online",
             "reportable": true,
-            "updated": 1741324485.302756,
+            "updated": 1741673941.549699,
             "changed": 1738253631.413103
           },
           "state": "online",
@@ -5515,7 +5498,7 @@
               "trend": {
                 "status": "normal"
               },
-              "last_updated": "2025-03-07T04:29:00Z"
+              "last_updated": "2025-03-11T04:47:53Z"
             },
             {
               "type": "devices.properties.float",
@@ -5527,12 +5510,12 @@
                 "unit": "unit.percent"
               },
               "state": {
-                "percent": 27,
+                "percent": 38,
                 "status": "warning",
-                "value": 27
+                "value": 38
               },
-              "state_changed_at": "2025-03-07T05:42:24Z",
-              "last_updated": "2025-03-07T05:42:24Z"
+              "state_changed_at": "2025-03-11T06:04:44Z",
+              "last_updated": "2025-03-11T06:04:44Z"
             },
             {
               "type": "devices.properties.float",
@@ -5546,10 +5529,10 @@
               "state": {
                 "percent": null,
                 "status": null,
-                "value": 27
+                "value": 27.1
               },
-              "state_changed_at": "2025-03-07T05:42:23Z",
-              "last_updated": "2025-03-07T05:42:23Z"
+              "state_changed_at": "2025-03-11T06:04:44Z",
+              "last_updated": "2025-03-11T06:04:44Z"
             }
           ],
           "item_type": "device",
@@ -5558,7 +5541,7 @@
           "status_info": {
             "status": "online",
             "reportable": true,
-            "updated": 1741326145.48609,
+            "updated": 1741673085.822991,
             "changed": 1738253631.413103
           },
           "state": "online",
@@ -5596,15 +5579,15 @@
                 "unit": "unit.percent"
               },
               "state": {
-                "percent": 86,
+                "percent": 89,
                 "status": "normal",
-                "value": 86
+                "value": 89
               },
               "trend": {
                 "status": "normal"
               },
-              "state_changed_at": "2025-03-07T05:14:40Z",
-              "last_updated": "2025-03-07T05:14:40Z"
+              "state_changed_at": "2025-03-11T04:55:25Z",
+              "last_updated": "2025-03-11T05:50:22Z"
             },
             {
               "type": "devices.properties.float",
@@ -5618,10 +5601,10 @@
               "state": {
                 "percent": null,
                 "status": null,
-                "value": -0.9
+                "value": 0.8
               },
-              "state_changed_at": "2025-03-07T06:03:25Z",
-              "last_updated": "2025-03-07T06:03:25Z"
+              "state_changed_at": "2025-03-11T06:16:20Z",
+              "last_updated": "2025-03-11T06:16:20Z"
             },
             {
               "type": "devices.properties.float",
@@ -5635,10 +5618,10 @@
               "state": {
                 "percent": null,
                 "status": null,
-                "value": 737
+                "value": 753
               },
-              "state_changed_at": "2025-03-07T05:28:34Z",
-              "last_updated": "2025-03-07T06:03:25Z"
+              "state_changed_at": "2025-03-11T05:59:05Z",
+              "last_updated": "2025-03-11T06:16:20Z"
             },
             {
               "type": "devices.properties.float",
@@ -5650,12 +5633,12 @@
                 "unit": "unit.percent"
               },
               "state": {
-                "percent": 72,
+                "percent": 76,
                 "status": "danger",
-                "value": 72
+                "value": 76
               },
-              "state_changed_at": "2025-03-07T06:03:25Z",
-              "last_updated": "2025-03-07T06:03:25Z"
+              "state_changed_at": "2025-03-11T06:16:20Z",
+              "last_updated": "2025-03-11T06:16:20Z"
             }
           ],
           "item_type": "device",
@@ -5664,7 +5647,7 @@
           "status_info": {
             "status": "online",
             "reportable": true,
-            "updated": 1741327406.831393,
+            "updated": 1741673780.977566,
             "changed": 1738253631.413103
           },
           "state": "online",
@@ -5709,7 +5692,7 @@
               "trend": {
                 "status": "normal"
               },
-              "last_updated": "2025-03-07T05:37:47Z"
+              "last_updated": "2025-03-11T05:49:05Z"
             },
             {
               "type": "devices.properties.float",
@@ -5721,12 +5704,12 @@
                 "unit": "unit.percent"
               },
               "state": {
-                "percent": 28,
+                "percent": 40,
                 "status": "warning",
-                "value": 28
+                "value": 40
               },
-              "state_changed_at": "2025-03-07T05:17:48Z",
-              "last_updated": "2025-03-07T05:17:48Z"
+              "state_changed_at": "2025-03-11T05:48:43Z",
+              "last_updated": "2025-03-11T05:48:43Z"
             },
             {
               "type": "devices.properties.float",
@@ -5740,10 +5723,10 @@
               "state": {
                 "percent": null,
                 "status": null,
-                "value": 24.1
+                "value": 25
               },
-              "state_changed_at": "2025-03-07T05:17:48Z",
-              "last_updated": "2025-03-07T05:17:48Z"
+              "state_changed_at": "2025-03-11T05:48:43Z",
+              "last_updated": "2025-03-11T05:48:43Z"
             }
           ],
           "item_type": "device",
@@ -5752,7 +5735,7 @@
           "status_info": {
             "status": "online",
             "reportable": true,
-            "updated": 1741325868.580532,
+            "updated": 1741672146.021902,
             "changed": 1738253631.413103
           },
           "state": "online",
@@ -5797,7 +5780,7 @@
               "trend": {
                 "status": "normal"
               },
-              "last_updated": "2025-03-07T02:37:26Z"
+              "last_updated": "2025-03-11T02:34:59Z"
             },
             {
               "type": "devices.properties.float",
@@ -5809,12 +5792,12 @@
                 "unit": "unit.percent"
               },
               "state": {
-                "percent": 36,
-                "status": "warning",
-                "value": 36
+                "percent": 42,
+                "status": "normal",
+                "value": 42
               },
-              "state_changed_at": "2025-03-07T05:41:49Z",
-              "last_updated": "2025-03-07T05:41:49Z"
+              "state_changed_at": "2025-03-11T06:04:08Z",
+              "last_updated": "2025-03-11T06:04:08Z"
             },
             {
               "type": "devices.properties.float",
@@ -5828,10 +5811,10 @@
               "state": {
                 "percent": null,
                 "status": null,
-                "value": 23.3
+                "value": 23.4
               },
-              "state_changed_at": "2025-03-07T05:41:48Z",
-              "last_updated": "2025-03-07T05:41:48Z"
+              "state_changed_at": "2025-03-11T06:04:08Z",
+              "last_updated": "2025-03-11T06:04:08Z"
             }
           ],
           "item_type": "device",
@@ -5840,7 +5823,7 @@
           "status_info": {
             "status": "online",
             "reportable": true,
-            "updated": 1741326110.48522,
+            "updated": 1741673049.796589,
             "changed": 1738253631.413103
           },
           "state": "online",
@@ -5885,7 +5868,8 @@
               "trend": {
                 "status": "normal"
               },
-              "last_updated": "2025-03-07T05:45:55Z"
+              "state_changed_at": "2025-03-10T21:46:00Z",
+              "last_updated": "2025-03-11T05:46:10Z"
             },
             {
               "type": "devices.properties.event",
@@ -5910,7 +5894,7 @@
                 "status": "normal",
                 "value": "dry"
               },
-              "last_updated": "2025-03-05T01:47:37Z"
+              "last_updated": "2025-03-10T05:49:16Z"
             }
           ],
           "item_type": "device",
@@ -5919,7 +5903,7 @@
           "status_info": {
             "status": "online",
             "reportable": true,
-            "updated": 1741326356.350484,
+            "updated": 1741671971.17168,
             "changed": 1738253631.413103
           },
           "state": "online",
@@ -6054,8 +6038,8 @@
                 "status": null,
                 "value": 231
               },
-              "state_changed_at": "2025-03-07T04:45:41Z",
-              "last_updated": "2025-03-07T04:45:41Z"
+              "state_changed_at": "2025-03-11T03:54:31Z",
+              "last_updated": "2025-03-11T03:54:31Z"
             },
             {
               "type": "devices.properties.float",
@@ -6071,8 +6055,8 @@
                 "status": null,
                 "value": 0
               },
-              "state_changed_at": "2025-03-06T16:39:12Z",
-              "last_updated": "2025-03-06T16:39:12Z"
+              "state_changed_at": "2025-03-10T19:54:28Z",
+              "last_updated": "2025-03-10T19:54:28Z"
             },
             {
               "type": "devices.properties.float",
@@ -6088,8 +6072,8 @@
                 "status": null,
                 "value": 0
               },
-              "state_changed_at": "2025-03-06T16:39:12Z",
-              "last_updated": "2025-03-06T16:39:12Z"
+              "state_changed_at": "2025-03-10T19:54:28Z",
+              "last_updated": "2025-03-10T19:54:28Z"
             }
           ],
           "item_type": "device",
@@ -6098,8 +6082,8 @@
           "status_info": {
             "status": "online",
             "reportable": true,
-            "updated": 1741324367.615113,
-            "changed": 1741324367.615113
+            "updated": 1741665272.280695,
+            "changed": 1741612627.567852
           },
           "state": "online",
           "render_info": {
@@ -6157,8 +6141,7 @@
                 "status": "normal",
                 "value": "click"
               },
-              "last_activated": "2025-03-06T14:54:49Z",
-              "last_updated": "2025-03-06T14:54:49Z"
+              "last_updated": "2025-03-10T03:47:41Z"
             }
           ],
           "item_type": "device",
@@ -6168,7 +6151,7 @@
           "status_info": {
             "status": "online",
             "reportable": true,
-            "updated": 1741319350.581346,
+            "updated": 1741671721.836153,
             "changed": 1738328118.802211
           },
           "state": "online",
@@ -6218,8 +6201,8 @@
                 "status": "normal",
                 "value": "click"
               },
-              "last_activated": "2025-03-06T19:40:53Z",
-              "last_updated": "2025-03-06T19:40:53Z"
+              "last_activated": "2025-03-10T18:39:30Z",
+              "last_updated": "2025-03-10T18:39:30Z"
             }
           ],
           "item_type": "device",
@@ -6229,7 +6212,7 @@
           "status_info": {
             "status": "online",
             "reportable": true,
-            "updated": 1741319350.026865,
+            "updated": 1741671720.9535,
             "changed": 1738328008.872791
           },
           "state": "online",
@@ -6626,20 +6609,8 @@
                     "name": "Вечеринка"
                   },
                   {
-                    "id": "snake",
-                    "name": "Год змеи"
-                  },
-                  {
-                    "id": "gaming",
-                    "name": "Игра"
-                  },
-                  {
                     "id": "night",
                     "name": "Вечерний"
-                  },
-                  {
-                    "id": "christmas",
-                    "name": "Рождество"
                   },
                   {
                     "id": "romance",
@@ -6652,10 +6623,6 @@
                   {
                     "id": "northern",
                     "name": "Северное сияние"
-                  },
-                  {
-                    "id": "fairy",
-                    "name": "Сказочные огни"
                   },
                   {
                     "id": "reading",
@@ -6700,8 +6667,8 @@
           "status_info": {
             "status": "online",
             "reportable": true,
-            "updated": 1741324212.046324,
-            "changed": 1739745798.963376
+            "updated": 1741673431.636009,
+            "changed": 1741559920.554321
           },
           "state": "online",
           "render_info": {
@@ -6759,10 +6726,10 @@
               "state": {
                 "percent": null,
                 "status": null,
-                "value": 231
+                "value": 230
               },
-              "state_changed_at": "2025-03-07T04:45:41Z",
-              "last_updated": "2025-03-07T04:45:41Z"
+              "state_changed_at": "2025-03-11T06:17:30Z",
+              "last_updated": "2025-03-11T06:17:30Z"
             },
             {
               "type": "devices.properties.float",
@@ -6778,8 +6745,8 @@
                 "status": null,
                 "value": 0
               },
-              "state_changed_at": "2025-03-06T03:52:52Z",
-              "last_updated": "2025-03-06T03:52:52Z"
+              "state_changed_at": "2025-03-11T04:17:30Z",
+              "last_updated": "2025-03-11T04:17:30Z"
             },
             {
               "type": "devices.properties.float",
@@ -6795,8 +6762,8 @@
                 "status": null,
                 "value": 0
               },
-              "state_changed_at": "2025-03-06T03:52:52Z",
-              "last_updated": "2025-03-06T03:52:52Z"
+              "state_changed_at": "2025-03-11T04:17:30Z",
+              "last_updated": "2025-03-11T04:17:30Z"
             }
           ],
           "item_type": "device",
@@ -6805,7 +6772,7 @@
           "status_info": {
             "status": "online",
             "reportable": true,
-            "updated": 1741324059.561362,
+            "updated": 1741673851.114282,
             "changed": 1738673796.858098
           },
           "state": "online",
@@ -6896,7 +6863,7 @@
           "status_info": {
             "status": "online",
             "reportable": true,
-            "updated": 1741327726.994009,
+            "updated": 1741674508.688102,
             "changed": 1736240163.772226
           },
           "state": "online",
@@ -6941,8 +6908,8 @@
                 "status": "normal",
                 "value": "click"
               },
-              "last_activated": "2025-03-06T14:54:48Z",
-              "last_updated": "2025-03-06T14:54:48Z"
+              "last_activated": "2025-03-10T19:47:26Z",
+              "last_updated": "2025-03-10T19:47:26Z"
             }
           ],
           "item_type": "device",
@@ -6952,7 +6919,7 @@
           "status_info": {
             "status": "online",
             "reportable": true,
-            "updated": 1741319350.970702,
+            "updated": 1741671722.266232,
             "changed": 1738328044.286817
           },
           "state": "online",
@@ -7002,9 +6969,8 @@
                 "status": "normal",
                 "value": "click"
               },
-              "last_activated": "2025-03-06T09:56:46Z",
-              "state_changed_at": "2025-03-06T09:56:46Z",
-              "last_updated": "2025-03-06T19:44:51Z"
+              "last_activated": "2025-03-10T18:39:29Z",
+              "last_updated": "2025-03-10T18:39:29Z"
             }
           ],
           "item_type": "device",
@@ -7014,7 +6980,7 @@
           "status_info": {
             "status": "online",
             "reportable": true,
-            "updated": 1741319350.313714,
+            "updated": 1741671721.522413,
             "changed": 1738328036.711349
           },
           "state": "online",
@@ -7287,7 +7253,7 @@
           "room_name": "Кухня",
           "status_info": {
             "status": "online",
-            "updated": 1741324059.273864,
+            "updated": 1741668095.703471,
             "changed": 1738253647.455466
           },
           "state": "online",
@@ -7313,7 +7279,7 @@
               "type": "devices.capabilities.on_off",
               "state": {
                 "instance": "on",
-                "value": false
+                "value": true
               },
               "parameters": {
                 "split": false
@@ -7327,7 +7293,7 @@
           "room_name": "Кухня",
           "status_info": {
             "status": "online",
-            "updated": 1741208853.210993,
+            "updated": 1741628795.305913,
             "changed": 1738253647.455466
           },
           "state": "online",
@@ -7343,7 +7309,7 @@
         },
         {
           "id": "900dca1a-e53a-418c-82cc-5ebb8795e266",
-          "name": "Свет балкон",
+          "name": "Свет балкон 1",
           "type": "devices.types.light.ceiling",
           "icon_url": "https://avatars.mds.yandex.net/get-iot/icons-devices-devices.types.light.ceiling.svg/orig",
           "capabilities": [
@@ -7367,7 +7333,7 @@
           "room_name": "Балкон",
           "status_info": {
             "status": "online",
-            "updated": 1741208831.579123,
+            "updated": 1741616318.009453,
             "changed": 1734101796.169981
           },
           "state": "online",
@@ -7383,7 +7349,7 @@
         },
         {
           "id": "68695c4b-c4b3-4eef-bd06-0788f0b2b1e3",
-          "name": "Свет ванная",
+          "name": "Свет ванная 1",
           "type": "devices.types.light.ceiling",
           "icon_url": "https://avatars.mds.yandex.net/get-iot/icons-devices-devices.types.light.ceiling.svg/orig",
           "capabilities": [
@@ -7393,7 +7359,7 @@
               "type": "devices.capabilities.on_off",
               "state": {
                 "instance": "on",
-                "value": false
+                "value": true
               },
               "parameters": {
                 "split": false
@@ -7407,7 +7373,7 @@
           "room_name": "Ванная",
           "status_info": {
             "status": "online",
-            "updated": 1741327412.195346,
+            "updated": 1741674445.031599,
             "changed": 1738948113.494048
           },
           "state": "online",
@@ -7423,7 +7389,7 @@
         },
         {
           "id": "bd142373-4be7-4a22-ba7f-67c62520e419",
-          "name": "Свет гардероб",
+          "name": "Свет гардероб 1",
           "type": "devices.types.light.ceiling",
           "icon_url": "https://avatars.mds.yandex.net/get-iot/icons-devices-devices.types.light.ceiling.svg/orig",
           "capabilities": [
@@ -7447,7 +7413,7 @@
           "room_name": "Гардероб",
           "status_info": {
             "status": "online",
-            "updated": 1741322535.639859,
+            "updated": 1741668316.27588,
             "changed": 1731230146.227602
           },
           "state": "online",
@@ -7579,7 +7545,7 @@
           "room_name": "Гостиная",
           "status_info": {
             "status": "online",
-            "updated": 1741180145.698261,
+            "updated": 1741601556.112225,
             "changed": 1738072742.37062
           },
           "state": "online",
@@ -7619,7 +7585,7 @@
           "room_name": "Гостиная",
           "status_info": {
             "status": "online",
-            "updated": 1741208843.741693,
+            "updated": 1741552209.065428,
             "changed": 1738072742.37062
           },
           "state": "online",
@@ -7645,7 +7611,7 @@
               "type": "devices.capabilities.on_off",
               "state": {
                 "instance": "on",
-                "value": false
+                "value": true
               },
               "parameters": {
                 "split": false
@@ -7659,7 +7625,7 @@
           "room_name": "Кухня",
           "status_info": {
             "status": "online",
-            "updated": 1738964221.859982,
+            "updated": 1741347920.464672,
             "changed": 1723476594.075531
           },
           "state": "online",
@@ -7681,47 +7647,7 @@
         },
         {
           "id": "75cb6fc4-3fd9-4c60-a2ef-ba32cf97961f",
-          "name": "Свет прихожая",
-          "type": "devices.types.light.ceiling",
-          "icon_url": "https://avatars.mds.yandex.net/get-iot/icons-devices-devices.types.light.ceiling.svg/orig",
-          "capabilities": [
-            {
-              "reportable": true,
-              "retrievable": true,
-              "type": "devices.capabilities.on_off",
-              "state": {
-                "instance": "on",
-                "value": false
-              },
-              "parameters": {
-                "split": false
-              },
-              "can_be_deferred": true
-            }
-          ],
-          "properties": [],
-          "item_type": "device",
-          "skill_id": "35e2897a-c583-495a-9e33-f5d6f0f4cb49",
-          "room_name": "Прихожая",
-          "status_info": {
-            "status": "online",
-            "updated": 1741327583.407907,
-            "changed": 1738474799.703483
-          },
-          "state": "online",
-          "created": "2024-08-08T13:25:24Z",
-          "parameters": {
-            "device_info": {
-              "manufacturer": "TUYA INC.",
-              "model": "二路开关 CB3S",
-              "hw_version": "1.0",
-              "sw_version": "1.0"
-            }
-          }
-        },
-        {
-          "id": "e2aa81c1-1bdb-454b-8881-82c17289d472",
-          "name": "Свет спальня 1",
+          "name": "Свет прихожая 1",
           "type": "devices.types.light.ceiling",
           "icon_url": "https://avatars.mds.yandex.net/get-iot/icons-devices-devices.types.light.ceiling.svg/orig",
           "capabilities": [
@@ -7742,14 +7668,14 @@
           "properties": [],
           "item_type": "device",
           "skill_id": "35e2897a-c583-495a-9e33-f5d6f0f4cb49",
-          "room_name": "Спальня",
+          "room_name": "Прихожая",
           "status_info": {
             "status": "online",
-            "updated": 1741290060.073774,
-            "changed": 1723220145.990545
+            "updated": 1741674440.768028,
+            "changed": 1738474799.703483
           },
           "state": "online",
-          "created": "2024-08-08T13:25:23Z",
+          "created": "2024-08-08T13:25:24Z",
           "parameters": {
             "device_info": {
               "manufacturer": "TUYA INC.",
@@ -7785,8 +7711,48 @@
           "room_name": "Спальня",
           "status_info": {
             "status": "online",
-            "updated": 1741290293.297703,
+            "updated": 1741636142.834156,
             "changed": 1729182526.875941
+          },
+          "state": "online",
+          "created": "2024-08-08T13:25:23Z",
+          "parameters": {
+            "device_info": {
+              "manufacturer": "TUYA INC.",
+              "model": "二路开关 CB3S",
+              "hw_version": "1.0",
+              "sw_version": "1.0"
+            }
+          }
+        },
+        {
+          "id": "e2aa81c1-1bdb-454b-8881-82c17289d472",
+          "name": "Свет спальня не активен",
+          "type": "devices.types.light.ceiling",
+          "icon_url": "https://avatars.mds.yandex.net/get-iot/icons-devices-devices.types.light.ceiling.svg/orig",
+          "capabilities": [
+            {
+              "reportable": true,
+              "retrievable": true,
+              "type": "devices.capabilities.on_off",
+              "state": {
+                "instance": "on",
+                "value": false
+              },
+              "parameters": {
+                "split": false
+              },
+              "can_be_deferred": true
+            }
+          ],
+          "properties": [],
+          "item_type": "device",
+          "skill_id": "35e2897a-c583-495a-9e33-f5d6f0f4cb49",
+          "room_name": "Спальня",
+          "status_info": {
+            "status": "online",
+            "updated": 1741636142.834156,
+            "changed": 1723220145.990545
           },
           "state": "online",
           "created": "2024-08-08T13:25:23Z",
@@ -7990,7 +7956,7 @@
           "status_info": {
             "status": "online",
             "reportable": true,
-            "updated": 1740826925.157489,
+            "updated": 1741559298.816371,
             "changed": 1738253692.370784
           },
           "state": "online",
@@ -8064,7 +8030,7 @@
           "room_name": "Гостиная",
           "status_info": {
             "status": "online",
-            "updated": 1741317189.303879,
+            "updated": 1741664198.418177,
             "changed": 1723476594.075531
           },
           "state": "online",
@@ -8132,10 +8098,10 @@
               "state": {
                 "percent": null,
                 "status": null,
-                "value": 24
+                "value": 22.5
               },
-              "state_changed_at": "2025-02-06T07:08:39Z",
-              "last_updated": "2025-02-06T07:08:39Z"
+              "state_changed_at": "2025-03-07T15:21:37Z",
+              "last_updated": "2025-03-07T15:21:37Z"
             }
           ],
           "item_type": "device",
@@ -8143,8 +8109,8 @@
           "room_name": "Ванная",
           "status_info": {
             "status": "no_data",
-            "updated": 1740927813.751348,
-            "changed": 1738825719.7466912
+            "updated": 1741622451.934597,
+            "changed": 1741360897.6708395
           },
           "state": "no_data",
           "created": "2024-08-08T13:25:25Z",
@@ -8289,10 +8255,10 @@
               "state": {
                 "percent": null,
                 "status": null,
-                "value": 231
+                "value": 230
               },
-              "state_changed_at": "2025-03-07T05:43:41Z",
-              "last_updated": "2025-03-07T05:43:41Z"
+              "state_changed_at": "2025-03-11T06:10:08Z",
+              "last_updated": "2025-03-11T06:10:08Z"
             },
             {
               "type": "devices.properties.float",
@@ -8335,8 +8301,8 @@
           "status_info": {
             "status": "online",
             "reportable": true,
-            "updated": 1741326221.964788,
-            "changed": 1741230204.772377
+            "updated": 1741673408.835895,
+            "changed": 1741610565.503226
           },
           "state": "online",
           "render_info": {
@@ -8384,7 +8350,7 @@
               "trend": {
                 "status": "normal"
               },
-              "last_updated": "2025-03-07T05:25:27Z"
+              "last_updated": "2025-03-11T05:57:41Z"
             },
             {
               "type": "devices.properties.event",
@@ -8413,8 +8379,8 @@
                 "status": "normal",
                 "value": "click"
               },
-              "last_activated": "2025-03-06T03:32:31Z",
-              "last_updated": "2025-03-06T03:32:31Z"
+              "last_activated": "2025-03-11T04:17:27Z",
+              "last_updated": "2025-03-11T04:17:27Z"
             }
           ],
           "item_type": "device",
@@ -8423,7 +8389,7 @@
           "status_info": {
             "status": "online",
             "reportable": true,
-            "updated": 1741325129.209791,
+            "updated": 1741672663.007659,
             "changed": 1738253631.413103
           },
           "state": "online",
@@ -8668,7 +8634,7 @@
           "status_info": {
             "status": "online",
             "reportable": true,
-            "updated": 1741326101.94284,
+            "updated": 1741631826.811899,
             "changed": 1738253631.318969
           },
           "state": "online",
@@ -8870,7 +8836,7 @@
           "status_info": {
             "status": "online",
             "reportable": true,
-            "updated": 1741326101.096941,
+            "updated": 1741631826.314277,
             "changed": 1738253892.426779
           },
           "state": "online",
@@ -9123,7 +9089,7 @@
           "status_info": {
             "status": "online",
             "reportable": true,
-            "updated": 1741326101.94284,
+            "updated": 1741631826.811899,
             "changed": 1738253631.318969
           },
           "state": "online",
@@ -9143,5 +9109,5 @@
       "id": "favorite"
     }
   },
-  "updates_url": "wss://push.yandex.ru/v2/subscribe/websocket?client=searchapp&filter=%7B%22rules%22%3A%5B%7B%22if%22%3A%7B%22%24event%22%3A%5B%22update_states%22%2C%22update_device_list%22%2C%22update_scenario_list%22%2C%22finish_discovery%22%2C%22add_voiceprint%22%2C%22add_faceid%22%2C%22remove_voiceprint%22%2C%22update_household_invitations_list%22%2C%22remote_matching%22%2C%22ir_learning_add%22%2C%22ir_learning_add_custom_button%22%2C%22ir_learning_delete_custom_button%22%2C%22ir_add_remote%22%2C%22update_phone_linking_state%22%2C%22ota_update_state%22%2C%22ble_setup_discovery_finished%22%2C%22discovery_progress_stage%22%2C%22discovery_progress_completed%22%2C%22wifi_network_connected%22%2C%22wifi_network_connection_error%22%2C%22smart_scenario_created%22%2C%22smart_scenario_updated%22%2C%22smart_scenario_archived%22%2C%22smart_scenario_activation_switched%22%5D%7D%2C%22do%22%3A%22send_bright%22%7D%2C%7B%22do%22%3A%22skip%22%7D%5D%2C%22vars%22%3A%7B%7D%7D&service=alice-iot&session=481cca81-e6e9-471c-88f9-96566718428a&sign=da7befb8bd8efac54e21655bdb27f230&ts=1741356546&user=727659051"
+  "updates_url": "wss://push.yandex.ru/v2/subscribe/websocket?client=searchapp&filter=%7B%22rules%22%3A%5B%7B%22if%22%3A%7B%22%24event%22%3A%5B%22update_states%22%2C%22update_device_list%22%2C%22update_scenario_list%22%2C%22finish_discovery%22%2C%22add_voiceprint%22%2C%22add_faceid%22%2C%22remove_voiceprint%22%2C%22update_household_invitations_list%22%2C%22remote_matching%22%2C%22ir_learning_add%22%2C%22ir_learning_add_custom_button%22%2C%22ir_learning_delete_custom_button%22%2C%22ir_add_remote%22%2C%22update_phone_linking_state%22%2C%22ota_update_state%22%2C%22ble_setup_discovery_finished%22%2C%22discovery_progress_stage%22%2C%22discovery_progress_completed%22%2C%22wifi_network_connected%22%2C%22wifi_network_connection_error%22%2C%22smart_scenario_created%22%2C%22smart_scenario_updated%22%2C%22smart_scenario_archived%22%2C%22smart_scenario_activation_switched%22%5D%7D%2C%22do%22%3A%22send_bright%22%7D%2C%7B%22do%22%3A%22skip%22%7D%5D%2C%22vars%22%3A%7B%7D%7D&service=alice-iot&session=5e45f286-5c80-4394-bc10-4efb0fe8fa51&sign=ac4022ab0da8703b56c2af4ac96d0a79&ts=1741703346&user=727659051"
 }

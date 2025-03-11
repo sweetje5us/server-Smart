@@ -1,0 +1,110 @@
+API Задач и Досок - Документация
+
+Базовый URL: http://192.168.0.24:8080/api
+
+1. Задачи (Tasks)
+
+1.1. Получение всех задач
+    GET /tasks
+    
+    Ответ:
+    [
+      {
+        "id": "task-id",
+        "title": "Название задачи",
+        "description": "Описание задачи",
+        "status": "todo",
+        "boardId": "board-id"
+      }
+    ]
+
+1.2. Получение конкретной задачи
+    GET /tasks/:taskId
+    
+    Ответ:
+    {
+      "id": "task-id",
+      "title": "Название задачи",
+      "description": "Описание задачи",
+      "status": "todo",
+      "boardId": "board-id"
+    }
+
+1.3. Создание задачи
+    POST /tasks
+    Content-Type: application/json
+    
+    Тело запроса:
+    {
+      "title": "Название задачи",
+      "description": "Описание задачи",
+      "status": "todo",
+      "boardId": "board-id"
+    }
+    
+    Ответ: созданная задача
+
+1.4. Обновление задачи
+    PUT /tasks
+    Content-Type: application/json
+    
+    Тело запроса:
+    {
+      "id": "task-id",
+      "title": "Новое название",
+      "description": "Новое описание",
+      "status": "in-progress",
+      "boardId": "board-id"
+    }
+    
+    Ответ: обновленная задача
+
+1.5. Удаление задачи
+    DELETE /tasks/:taskId
+    
+    Ответ: удаленная задача
+
+2. Доски (Boards)
+
+2.1. Получение всех досок
+    GET /boards
+    
+    Ответ:
+    [
+      {
+        "id": "board-id",
+        "title": "Название доски",
+        "description": "Описание доски"
+      }
+    ]
+
+2.2. Создание доски
+    POST /boards
+    Content-Type: application/json
+    
+    Тело запроса:
+    {
+      "title": "Название доски",
+      "description": "Описание доски"
+    }
+    
+    Ответ: созданная доска
+
+Коды ответов:
+- 200: Успешное выполнение
+- 201: Успешное создание
+- 404: Ресурс не найден
+- 500: Внутренняя ошибка сервера
+
+Примеры запросов:
+1. Получить все задачи:
+   GET http://192.168.0.24:8080/api/tasks
+
+2. Создать новую задачу:
+   POST http://192.168.0.24:8080/api/tasks
+   {
+     "title": "Новая задача",
+     "description": "Описание задачи",
+     "status": "todo",
+     "boardId": "board-123"
+   } 

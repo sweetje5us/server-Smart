@@ -1,0 +1,144 @@
+API Авторизации - Документация
+
+Базовый URL: http://192.168.0.24:8080/api/auth
+
+1. Регистрация пользователя
+   POST /register
+   Content-Type: application/json
+   
+   Тело запроса:
+   {
+     "login": "username",
+     "password": "password123",
+     "name": "Имя пользователя",
+     "settings": {
+       "img": "url/to/image.jpg",
+       "services": {
+         "calendar": {
+           "theme": "dark",
+           "view": "week"
+         },
+         "notification": {
+           "sound": true,
+           "desktop": true
+         },
+         "tasks": {
+           "sortBy": "priority",
+           "groupBy": "status"
+         }
+       }
+     }
+   }
+   
+   Ответ: созданный пользователь (без пароля)
+
+2. Вход в систему
+   POST /login
+   Content-Type: application/json
+   
+   Тело запроса:
+   {
+     "login": "username",
+     "password": "password123"
+   }
+   
+   Ответ: данные пользователя (без пароля)
+
+3. Получение данных пользователя
+   GET /users/:userId
+   
+   Ответ: данные пользователя (без пароля)
+
+4. Обновление данных пользователя
+   PUT /users/:userId
+   Content-Type: application/json
+   
+   Тело запроса:
+   {
+     "name": "Новое имя",
+     "settings": {
+       "img": "new/image.jpg",
+       "services": {
+         "calendar": {
+           "theme": "light"
+         }
+       }
+     }
+   }
+   
+   Ответ: обновленные данные пользователя (без пароля)
+
+5. Удаление пользователя
+   DELETE /users/:userId
+   
+   Ответ: удаленные данные пользователя (без пароля)
+
+Коды ответов:
+- 200: Успешное выполнение
+- 201: Успешное создание
+- 400: Неверный запрос (отсутствуют обязательные поля или логин уже существует)
+- 401: Неверный пароль
+- 404: Пользователь не найден
+- 500: Внутренняя ошибка сервера
+
+Структура пользователя:
+{
+  "id": "uuid",
+  "login": "username",
+  "name": "Имя пользователя",
+  "settings": {
+    "img": "url/to/image.jpg",
+    "services": {
+      "calendar": {
+        "theme": "dark",
+        "view": "week"
+      },
+      "notification": {
+        "sound": true,
+        "desktop": true
+      },
+      "tasks": {
+        "sortBy": "priority",
+        "groupBy": "status"
+      }
+    }
+  },
+  "createdAt": "ISO datetime",
+  "updatedAt": "ISO datetime"
+}
+
+Примеры запросов:
+1. Регистрация нового пользователя:
+   POST http://192.168.0.24:8080/api/auth/register
+   {
+     "login": "john_doe",
+     "password": "secure123",
+     "name": "John Doe",
+     "settings": {
+       "img": "https://example.com/avatar.jpg",
+       "services": {
+         "calendar": {
+           "theme": "dark"
+         }
+       }
+     }
+   }
+
+2. Вход в систему:
+   POST http://192.168.0.24:8080/api/auth/login
+   {
+     "login": "john_doe",
+     "password": "secure123"
+   }
+
+3. Обновление настроек пользователя:
+   PUT http://192.168.0.24:8080/api/auth/users/550e8400-e29b-41d4-a716-446655440000
+   {
+     "settings": {
+       "services": {
+         "notification": {
+           "sound": false
+         }
+       }
+     }
+   } 

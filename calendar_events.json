@@ -1,0 +1,19 @@
+[
+  {
+    "id": "d6cf1181-1100-4f57-85f7-16c6f3087996",
+    "userId": "597729cf-760b-40a4-8cde-e748224925a5",
+    "date": "2025-03-03",
+    "time": "11:30",
+    "title": "митинг",
+    "repeatDays": [
+      1,
+      3,
+      5
+    ],
+    "notification": {
+      "enabled": true,
+      "time": 15
+    },
+    "createdAt": "2025-03-09T21:57:01.789Z"
+  }
+]
